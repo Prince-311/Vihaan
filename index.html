@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S C Unkal • Pure Oils & Kirana | Hubballi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .hero-bg {
+            background-image: url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+        .tail-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body class="bg-amber-50 text-gray-800 overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="tail-container px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-orange-600 to-amber-600 rounded-2xl flex items-center justify-center text-4xl shadow-inner">🛢️</div>
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tighter text-orange-600">S C Unkal</h1>
+                    <p class="text-xs text-gray-500 tracking-wide -mt-1">PURE OILS & KIRANA • HUBBALLI</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-9 text-sm font-semibold">
+                <a href="#" onclick="document.getElementById('oils').scrollIntoView({behavior:'smooth'})" class="hover:text-orange-600 transition">Oils</a>
+                <a href="#" onclick="document.getElementById('essentials').scrollIntoView({behavior:'smooth'})" class="hover:text-orange-600 transition">Essentials</a>
+                <a href="#" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})" class="hover:text-orange-600 transition">About Us</a>
+                <a href="tel:+919019870656" class="hover:text-orange-600 transition">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <button onclick="toggleCart()" class="relative text-2xl hover:scale-110 transition">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-orange-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </button>
+                <button onclick="window.open('https://wa.me/919019870656', '_blank')" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-3xl text-sm font-medium flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </button>
+                <button class="md:hidden text-3xl">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-bg h-[80vh] flex items-center relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/80"></div>
+        
+        <div class="tail-container px-6 relative z-10 text-white text-center">
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter mb-4">
+                PURE EDIBLE OILS<br>& DAILY KIRANA
+            </h1>
+            <p class="text-2xl md:text-3xl font-light text-amber-100 mb-8">
+                Sunflower • Mustard • Groundnut • Palm • Coconut & More
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="document.getElementById('oils').scrollIntoView({behavior:'smooth'})" 
+                        class="bg-orange-600 hover:bg-orange-700 text-white font-semibold text-xl px-10 py-5 rounded-3xl flex items-center justify-center gap-3 shadow-xl">
+                    SHOP NOW
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <a href="tel:+919019870656" 
+                   class="border-2 border-white hover:bg-white hover:text-black text-xl font-semibold px-10 py-5 rounded-3xl flex items-center gap-3 transition">
+                    <i class="fa-solid fa-phone"></i> Call +91 90198 70656
+                </a>
+            </div>
+
+            <div class="mt-12 grid grid-cols-3 gap-6 text-center text-sm max-w-md mx-auto">
+                <div><i class="fa-solid fa-leaf text-3xl mb-2"></i><p>100% Pure</p></div>
+                <div><i class="fa-solid fa-truck text-3xl mb-2"></i><p>Local Delivery</p></div>
+                <div><i class="fa-solid fa-rupee-sign text-3xl mb-2"></i><p>Best Rates</p></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- OILS SECTION -->
+    <section id="oils" class="py-20 bg-white">
+        <div class="tail-container px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">Our Pure Edible Oils</h2>
+            <p class="text-center text-gray-600 mb-12">Fresh, unadulterated oils for healthy North Karnataka cooking</p>
+            
+            <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- JS populated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ESSENTIALS -->
+    <section id="essentials" class="py-16 bg-amber-50">
+        <div class="tail-container px-6">
+            <h2 class="text-4xl font-bold text-center mb-10">Daily Kirana Needs</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center">
+                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🌾</div><h4 class="font-semibold">Atta & Rice</h4></div>
+                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🥣</div><h4 class="font-semibold">Dal & Pulses</h4></div>
+                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🌶️</div><h4 class="font-semibold">Spices</h4></div>
+                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🧼</div><h4 class="font-semibold">Soaps & Detergents</h4></div>
+                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🥥</div><h4 class="font-semibold">Coconut Products</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
+        <div class="tail-container px-6 max-w-3xl mx-auto text-center">
+            <div class="w-24 h-24 mx-auto bg-white rounded-full shadow flex items-center justify-center text-6xl mb-8">👨‍🌾</div>
+            <h2 class="text-4xl font-bold mb-6">Namaste from Vihaan Unkal</h2>
+            <p class="text-lg leading-relaxed text-gray-700 mb-8">
+                Welcome to S C Unkal – your trusted kirana store in Akki Honda, Hubballi since many years. 
+                We specialize in pure, fresh edible oils (sunflower, mustard, groundnut, palm, coconut and more) 
+                along with all daily household essentials. Quality and fair prices guaranteed. 
+                Visit us or order via WhatsApp/call – happy to serve our Hubballi neighbours!
+            </p>
+            <p class="text-xl font-semibold text-orange-600">Vihaan Unkal<br>Owner, S C Unkal</p>
+            <p class="mt-4 text-gray-600">Akki Honda, Hubballi – 580020, Karnataka</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="tail-container px-6">
+            <div class="grid md:grid-cols-4 gap-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center text-3xl">🛢️</div>
+                        <span class="text-2xl font-bold">S C Unkal</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Pure oils & daily kirana essentials<br>Akki Honda, Hubballi – 580020</p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <div class="space-y-2 text-sm text-gray-400">
+                        <p class="cursor-pointer hover:text-white">Oils</p>
+                        <p class="cursor-pointer hover:text-white">Essentials</p>
+                        <p class="cursor-pointer hover:text-white">Contact Us</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <div class="text-sm text-gray-400 space-y-2">
+                        <p>📍 Akki Honda, Hubballi, Karnataka 580020</p>
+                        <p>📞 <a href="tel:+919019870656" class="hover:text-white">+91 90198 70656</a></p>
+                        <p>💬 <a href="https://wa.me/919019870656" class="hover:text-white">WhatsApp same number</a></p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex gap-6 text-2xl">
+                        <a href="https://wa.me/919019870656"><i class="fa-brands fa-whatsapp hover:text-green-400"></i></a>
+                        <i class="fa-brands fa-phone hover:text-blue-400 cursor-pointer"></i>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-6">Serving Hubballi with trust & quality</p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-6 text-center text-sm text-gray-500">
+                © 2026 S C Unkal • Proudly Local – Hubballi, Karnataka
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART MODAL (kept simple) -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-end md:items-center justify-center">
+        <div class="bg-white w-full max-w-lg rounded-t-3xl md:rounded-3xl shadow-2xl max-h-[85vh] overflow-hidden">
+            <div class="px-6 py-6 border-b bg-orange-50 flex justify-between items-center">
+                <h3 class="text-2xl font-bold">Your Cart</h3>
+                <button onclick="toggleCart()" class="text-3xl">×</button>
+            </div>
+            <div id="cart-items" class="p-6 overflow-auto max-h-[50vh]"></div>
+            <div class="p-6 border-t">
+                <div class="flex justify-between text-xl mb-6">
+                    <span>Total</span>
+                    <span id="cart-total" class="font-bold">₹0</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-5 rounded-3xl text-lg font-semibold">
+                    Order via WhatsApp / COD
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-green-600 text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center gap-3 z-50"></div>
+
+    <script>
+        const products = [
+            {id:1, name:"Sunflower Oil", size:"1 L", price:145, img:"images/product1.jpg"},
+            {id:2, name:"Mustard Oil", size:"1 L", price:160, img:"images/product4.jpg"},
+            {id:3, name:"Groundnut Oil", size:"1 L", price:180, img:"images/product2.jpg"},
+            {id:4, name:"Palm Oil", size:"1 L", price:130, img:"images/product3.jpg"},
+            {id:5, name:"Coconut Oil", size:"500 ml", price:190, img:"images/product7.jpg"}
+        ];
+
+        let cart = [];
+
+        function renderProducts() {
+            document.getElementById('products-grid').innerHTML = products.map(p => `
+                <div class="product-card bg-white rounded-3xl overflow-hidden shadow">
+                    <img src="${p.img}" alt="${p.name}" class="w-full h-56 object-cover">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg">${p.name}</h3>
+                        <p class="text-gray-500">${p.size}</p>
+                        <p class="text-2xl font-bold text-orange-600 mt-2">₹${p.price}</p>
+                        <button onclick="addToCart(${p.id})" class="mt-4 w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-2xl flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const prod = products.find(p => p.id === id);
+            cart.push(prod);
+            document.getElementById('cart-count').textContent = cart.length;
+            showToast(`${prod.name} added!`);
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerHTML = `<i class="fa-solid fa-check"></i> ${msg}`;
+            t.classList.remove('hidden'); t.classList.add('flex');
+            setTimeout(() => { t.classList.add('hidden'); t.classList.remove('flex'); }, 2200);
+        }
+
+        function toggleCart() {
+            const m = document.getElementById('cart-modal');
+            const items = document.getElementById('cart-items');
+            if (m.classList.contains('hidden')) {
+                items.innerHTML = cart.length === 0 ? '<p class="text-center py-10 text-gray-500">Cart empty</p>' : cart.map((item,i) => `
+                    <div class="flex gap-4 mb-4">
+                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-xl">
+                        <div class="flex-1">
+                            <p>${item.name} (${item.size})</p>
+                            <p class="text-orange-600 font-bold">₹${item.price}</p>
+                        </div>
+                    </div>
+                `).join('');
+                const total = cart.reduce((s,i)=>s+i.price,0);
+                document.getElementById('cart-total').textContent = `₹${total}`;
+                m.classList.remove('hidden');
+            } else {
+                m.classList.add('hidden');
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            const msg = encodeURIComponent(`New order from website:\n${cart.map(i=>`- ${i.name} ${i.size} ₹${i.price}`).join('\n')}\nTotal: ₹${cart.reduce((s,i)=>s+i.price,0)}`);
+            window.open(`https://wa.me/919019870656?text=${msg}`, '_blank');
+            cart = [];
+            document.getElementById('cart-count').textContent = '0';
+            toggleCart();
+            showToast('Order sent via WhatsApp!');
+        }
+
+        document.addEventListener('keydown', e => { if (e.key==='Escape') document.getElementById('cart-modal')?.classList.add('hidden'); });
+
+        window.onload = renderProducts;
+    </script>
+</body>
+</html>
