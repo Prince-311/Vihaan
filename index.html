@@ -1,834 +1,2541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S C Unkal • Pure Oils & Kirana | Hubballi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
-        body { font-family: 'Inter', system-ui, sans-serif; }
-        .hero-bg {
-            background-image: url('images/hero.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .product-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .product-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-        }
-        .filter-btn {
-            transition: all 0.2s ease;
-        }
-        .filter-btn.active {
-            background: linear-gradient(90deg, #fb923c, #f97316);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 10px 25px rgba(251, 146, 60, 0.4);
-        }
-        .tail-container {
-            max-width: 1280px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S C Unkal • Pure Oils & Kirana | Akki Honda, Hubballi</title>
+<meta name="description" content="S C Unkal – Pure edible oils, sunflower, mustard, groundnut, coconut and daily kirana essentials. Trusted local shop in Akki Honda, Hubballi since decades.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Serif+Kannada:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============================================================
+   DESIGN TOKENS — Warm Indian Grocery Palette
+============================================================ */
+:root {
+  --gold:       #C8922A;
+  --gold-light: #E6B355;
+  --gold-pale:  #F9EDD3;
+  --sienna:     #8B3A1E;
+  --sienna-lt:  #B5512E;
+  --cream:      #FDF6E8;
+  --parchment:  #F5E8CA;
+  --warm-gray:  #7A6E60;
+  --ink:        #2A1F0E;
+  --white:      #FFFEF9;
+  --green:      #2D6A4F;
+  --green-lt:   #40916C;
+  --red-err:    #C0392B;
 
-        body.login-locked > :not(#login-modal) {
-            filter: blur(2px);
-            pointer-events: none;
-            user-select: none;
-        }
+  --ff-display: 'Cormorant Garamond', Georgia, serif;
+  --ff-body:    'DM Sans', system-ui, sans-serif;
 
-        #login-modal {
-            transition: opacity 0.2s ease;
-        }
-    </style>
+  --radius-sm:  8px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-xl:  36px;
+
+  --shadow-sm:  0 2px 8px rgba(42,31,14,0.10);
+  --shadow-md:  0 8px 32px rgba(42,31,14,0.14);
+  --shadow-lg:  0 24px 64px rgba(42,31,14,0.18);
+
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--ff-body);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, textarea, select { font-family: inherit; }
+
+/* ============================================================
+   SCROLLBAR
+============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--parchment); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 99px; }
+
+/* ============================================================
+   UTILITY
+============================================================ */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border-width:0; }
+
+/* ============================================================
+   GRAIN OVERLAY (texture feel)
+============================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+}
+
+/* ============================================================
+   TOP ANNOUNCEMENT BAR
+============================================================ */
+#announce-bar {
+  background: var(--sienna);
+  color: var(--gold-light);
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  font-weight: 500;
+}
+#announce-bar a { color: var(--gold-light); text-decoration: underline; }
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: var(--white);
+  border-bottom: 1px solid rgba(200,146,42,0.18);
+  transition: box-shadow var(--transition);
+}
+#navbar.scrolled { box-shadow: var(--shadow-md); }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--sienna), var(--gold));
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(139,58,30,0.35);
+  flex-shrink: 0;
+}
+.nav-logo-text .shop-name {
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--sienna);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+.nav-logo-text .shop-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--warm-gray);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.03em;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color var(--transition);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  border-radius: 99px;
+  transition: width var(--transition);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.btn-icon {
+  width: 40px; height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  color: var(--ink);
+  transition: background var(--transition), color var(--transition);
+  position: relative;
+}
+.btn-icon:hover { background: var(--gold-pale); color: var(--sienna); }
+.cart-badge {
+  position: absolute;
+  top: -4px; right: -4px;
+  background: var(--sienna);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  min-width: 18px; height: 18px;
+  border-radius: 99px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--white);
+}
+.btn-whatsapp {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  transition: background var(--transition), transform var(--transition);
+  letter-spacing: 0.02em;
+}
+.btn-whatsapp:hover { background: var(--green-lt); transform: translateY(-1px); }
+.btn-admin {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--ink);
+  color: var(--gold-light);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  transition: background var(--transition);
+  letter-spacing: 0.04em;
+}
+.btn-admin:hover { background: var(--sienna); }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--ink);
+  border-radius: 99px;
+  transition: var(--transition);
+}
+
+/* ============================================================
+   MOBILE NAV DRAWER
+============================================================ */
+#mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  display: none;
+}
+#mobile-drawer.open { display: block; }
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(42,31,14,0.55);
+  backdrop-filter: blur(3px);
+}
+.drawer-panel {
+  position: absolute;
+  top: 0; right: 0;
+  width: min(320px, 90vw);
+  height: 100%;
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+  padding: 24px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+#mobile-drawer.open .drawer-panel { transform: translateX(0); }
+.drawer-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+.drawer-close { font-size: 1.5rem; color: var(--warm-gray); padding: 4px; }
+.drawer-nav { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.drawer-nav a {
+  display: block;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink);
+  transition: background var(--transition), color var(--transition);
+}
+.drawer-nav a:hover { background: var(--gold-pale); color: var(--sienna); }
+.drawer-divider { height: 1px; background: rgba(200,146,42,0.2); margin: 16px 0; }
+
+/* ============================================================
+   HERO SECTION
+============================================================ */
+#hero {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(160deg, rgba(42,31,14,0.82) 0%, rgba(139,58,30,0.65) 50%, rgba(42,31,14,0.88) 100%),
+    url('https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=1600&q=80') center/cover no-repeat;
+}
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(200,146,42,0.12) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 0 60px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(200,146,42,0.2);
+  border: 1px solid rgba(200,146,42,0.4);
+  color: var(--gold-light);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 99px;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+.hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.hero-title em { color: var(--gold-light); font-style: italic; }
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: rgba(255,255,255,0.7);
+  font-weight: 300;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+.hero-tagline {
+  font-family: var(--ff-display);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--gold-light);
+  font-style: italic;
+  margin-bottom: 36px;
+  opacity: 0.85;
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 56px; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--gold), var(--sienna-lt));
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(200,146,42,0.4);
+  transition: transform var(--transition), box-shadow var(--transition);
+  letter-spacing: 0.02em;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(200,146,42,0.5); }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  color: var(--white);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 13px 26px;
+  border-radius: var(--radius-lg);
+  transition: background var(--transition), border-color var(--transition);
+  letter-spacing: 0.02em;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+.hero-badges { display: flex; flex-wrap: wrap; gap: 20px; }
+.hero-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.83rem;
+  font-weight: 400;
+}
+.hero-badge-icon {
+  width: 38px; height: 38px;
+  background: rgba(200,146,42,0.2);
+  border: 1px solid rgba(200,146,42,0.35);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* ============================================================
+   TRUST STRIP
+============================================================ */
+#trust-strip {
+  background: var(--sienna);
+  padding: 14px 0;
+  overflow: hidden;
+}
+.trust-inner {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  animation: marquee 22s linear infinite;
+  white-space: nowrap;
+}
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold-light);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.trust-dot { color: rgba(255,255,255,0.35); font-size: 0.5rem; }
+
+/* ============================================================
+   SECTION SHARED
+============================================================ */
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--warm-gray);
+  margin-top: 10px;
+  font-weight: 300;
+  max-width: 480px;
+}
+.section-header { margin-bottom: 48px; }
+.section-header.center { text-align: center; }
+.section-header.center .section-subtitle { margin-left: auto; margin-right: auto; }
+
+/* ============================================================
+   PRODUCTS SECTION
+============================================================ */
+#products { padding: 80px 0; background: var(--white); }
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-tab {
+  padding: 8px 20px;
+  border-radius: 99px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1.5px solid rgba(200,146,42,0.25);
+  color: var(--warm-gray);
+  background: var(--white);
+  transition: all var(--transition);
+  letter-spacing: 0.04em;
+}
+.filter-tab:hover { border-color: var(--gold); color: var(--gold); }
+.filter-tab.active {
+  background: var(--sienna);
+  color: var(--white);
+  border-color: var(--sienna);
+  box-shadow: 0 4px 16px rgba(139,58,30,0.3);
+}
+.search-wrap {
+  position: relative;
+  width: min(280px, 100%);
+}
+.search-wrap input {
+  width: 100%;
+  padding: 10px 16px 10px 40px;
+  border: 1.5px solid rgba(200,146,42,0.25);
+  border-radius: 99px;
+  font-size: 0.85rem;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.search-wrap input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,146,42,0.12); }
+.search-wrap i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--warm-gray); font-size: 0.85rem; pointer-events: none; }
+#products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+.product-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(200,146,42,0.15);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(200,146,42,0.4);
+}
+.product-img-wrap { position: relative; overflow: hidden; }
+.product-img-wrap img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.product-card:hover .product-img-wrap img { transform: scale(1.06); }
+.product-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: var(--sienna);
+  color: #fff;
+}
+.product-badge.essentials { background: var(--green); }
+.product-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.product-name {
+  font-family: var(--ff-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.product-size { font-size: 0.8rem; color: var(--warm-gray); font-weight: 400; }
+.product-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--sienna);
+  font-family: var(--ff-display);
+  letter-spacing: -0.01em;
+  margin-top: 4px;
+}
+.product-price span { font-size: 0.85rem; color: var(--warm-gray); font-weight: 400; text-decoration: line-through; margin-left: 6px; font-family: var(--ff-body); }
+.product-qty-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.qty-btn {
+  width: 30px; height: 30px;
+  border-radius: var(--radius-sm);
+  background: var(--gold-pale);
+  color: var(--sienna);
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+.qty-btn:hover { background: var(--parchment); }
+.qty-display {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.product-actions { display: flex; gap: 8px; margin-top: 10px; }
+.btn-view {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1.5px solid rgba(200,146,42,0.3);
+  color: var(--gold);
+  background: var(--white);
+  transition: all var(--transition);
+  letter-spacing: 0.02em;
+}
+.btn-view:hover { background: var(--gold-pale); border-color: var(--gold); }
+.btn-cart {
+  flex: 1.5;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--sienna);
+  color: var(--white);
+  transition: background var(--transition), transform var(--transition);
+  letter-spacing: 0.02em;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-cart:hover { background: var(--gold); transform: translateY(-1px); }
+.no-products {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 64px 24px;
+  color: var(--warm-gray);
+}
+.no-products i { font-size: 3rem; opacity: 0.3; display: block; margin-bottom: 16px; }
+
+/* ============================================================
+   CATEGORIES SECTION
+============================================================ */
+#categories { padding: 72px 0; background: var(--gold-pale); }
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+.cat-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 28px 20px;
+  text-align: center;
+  border: 1px solid rgba(200,146,42,0.12);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.cat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold);
+}
+.cat-emoji { font-size: 2.8rem; display: block; margin-bottom: 12px; }
+.cat-name { font-weight: 600; font-size: 0.9rem; color: var(--ink); letter-spacing: 0.02em; }
+.cat-count { font-size: 0.75rem; color: var(--warm-gray); margin-top: 4px; }
+
+/* ============================================================
+   ABOUT / WHY US
+============================================================ */
+#about { padding: 80px 0; background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.about-img-wrap { position: relative; }
+.about-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+.about-badge-float {
+  position: absolute;
+  bottom: -24px; right: -24px;
+  background: var(--sienna);
+  color: var(--white);
+  padding: 20px 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.about-badge-float .years {
+  font-family: var(--ff-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold-light);
+}
+.about-badge-float .years-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; margin-top: 4px; }
+.about-copy .section-title { margin-bottom: 16px; }
+.about-copy p { color: var(--warm-gray); line-height: 1.75; margin-bottom: 16px; font-weight: 300; }
+.about-copy p strong { color: var(--ink); font-weight: 600; }
+.owner-sig {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--gold-pale);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--gold);
+}
+.owner-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--sienna)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+.owner-name { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+.owner-title { font-size: 0.78rem; color: var(--warm-gray); margin-top: 2px; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+.why-item { display: flex; gap: 12px; align-items: flex-start; }
+.why-icon { width: 36px; height: 36px; background: var(--gold-pale); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; color: var(--sienna); margin-top: 2px; }
+.why-label { font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+.why-desc { font-size: 0.78rem; color: var(--warm-gray); margin-top: 2px; line-height: 1.5; }
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+#testimonials { padding: 80px 0; background: var(--cream); }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.testi-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  border: 1px solid rgba(200,146,42,0.12);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.testi-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 14px; letter-spacing: 2px; }
+.testi-quote {
+  font-family: var(--ff-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 18px;
+}
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-pale), var(--parchment));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.testi-name { font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+.testi-location { font-size: 0.75rem; color: var(--warm-gray); }
+
+/* ============================================================
+   ORDER TRACKING
+============================================================ */
+#tracking { padding: 80px 0; background: var(--ink); }
+.tracking-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200,146,42,0.2);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.tracking-card .section-title { color: var(--white); }
+.tracking-card .section-eyebrow { color: var(--gold-light); }
+.tracking-card .section-subtitle { color: rgba(255,255,255,0.55); }
+.tracking-input-row { display: flex; gap: 12px; margin-top: 28px; }
+.tracking-input {
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(200,146,42,0.3);
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  letter-spacing: 0.06em;
+}
+.tracking-input::placeholder { color: rgba(255,255,255,0.3); }
+.tracking-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,146,42,0.15); }
+.btn-track {
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--gold), var(--sienna-lt));
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.btn-track:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,146,42,0.4); }
+#tracking-result { margin-top: 32px; }
+.order-info-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.order-info-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.order-id-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+.order-id-val { font-family: var(--ff-display); font-size: 1.2rem; color: var(--white); font-weight: 600; }
+.order-status-badge {
+  padding: 5px 14px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.status-received { background: rgba(200,146,42,0.2); color: var(--gold-light); }
+.status-processing { background: rgba(62,116,192,0.2); color: #7EB3FF; }
+.status-packed { background: rgba(139,58,30,0.3); color: var(--sienna-lt); }
+.status-delivery { background: rgba(45,106,79,0.3); color: #6FCBA6; }
+.status-delivered { background: rgba(45,106,79,0.4); color: #8DFFCD; }
+.progress-track { display: flex; flex-direction: column; gap: 0; }
+.progress-step { display: flex; gap: 16px; align-items: flex-start; }
+.step-line-wrap { display: flex; flex-direction: column; align-items: center; }
+.step-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+.step-dot.done { background: var(--gold); border-color: var(--gold); color: var(--white); }
+.step-dot.active { background: transparent; border-color: var(--gold); color: var(--gold); box-shadow: 0 0 0 4px rgba(200,146,42,0.2); }
+.step-connector {
+  width: 2px;
+  flex: 1;
+  min-height: 24px;
+  background: rgba(255,255,255,0.08);
+  margin: 4px 0;
+}
+.step-connector.done { background: var(--gold); }
+.step-body { padding-bottom: 20px; }
+.step-label { font-size: 0.88rem; font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.4; padding-top: 4px; }
+.step-sublabel { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 3px; }
+.step-label.active-label { color: var(--gold-light); }
+.track-error { color: rgba(255,255,255,0.5); text-align: center; padding: 24px; font-size: 0.9rem; }
+
+/* ============================================================
+   CHECKOUT MODAL (full overlay)
+============================================================ */
+#checkout-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(42,31,14,0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+#checkout-overlay.open { display: flex; }
+.checkout-modal {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  width: min(600px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  border-bottom: 1px solid rgba(200,146,42,0.12);
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 1;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+.modal-title { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 700; color: var(--ink); }
+.modal-close { width: 36px; height: 36px; border-radius: 50%; background: var(--gold-pale); color: var(--warm-gray); font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
+.modal-close:hover { background: var(--parchment); }
+.modal-body { padding: 28px; }
+.form-group { margin-bottom: 18px; }
+.form-label { display: block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; color: var(--warm-gray); text-transform: uppercase; margin-bottom: 6px; }
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(200,146,42,0.25);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--white);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,146,42,0.12); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.checkout-order-summary {
+  background: var(--gold-pale);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 20px;
+}
+.checkout-order-summary h4 { font-weight: 600; font-size: 0.9rem; margin-bottom: 12px; color: var(--ink); }
+.summary-line { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--warm-gray); padding: 4px 0; }
+.summary-line.total { font-weight: 700; color: var(--ink); font-size: 1rem; border-top: 1px solid rgba(200,146,42,0.25); padding-top: 10px; margin-top: 6px; }
+.payment-opts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px; }
+.payment-opt {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(200,146,42,0.2);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--warm-gray);
+}
+.payment-opt.selected { border-color: var(--sienna); background: rgba(139,58,30,0.06); color: var(--sienna); }
+.payment-opt i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
+.btn-place-order {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--sienna), var(--gold));
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-lg);
+  letter-spacing: 0.04em;
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 8px 24px rgba(139,58,30,0.3);
+  margin-top: 8px;
+}
+.btn-place-order:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(139,58,30,0.4); }
+/* Order confirmation */
+.order-confirm {
+  text-align: center;
+  padding: 40px 28px;
+}
+.confirm-icon {
+  width: 80px; height: 80px;
+  background: linear-gradient(135deg, var(--green), var(--green-lt));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  color: var(--white);
+  margin: 0 auto 24px;
+  box-shadow: 0 8px 32px rgba(45,106,79,0.35);
+}
+.confirm-title { font-family: var(--ff-display); font-size: 2rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.confirm-subtitle { color: var(--warm-gray); font-size: 0.9rem; margin-bottom: 24px; line-height: 1.6; }
+.order-id-box {
+  background: var(--gold-pale);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin: 16px 0 28px;
+  text-align: center;
+}
+.order-id-box label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); display: block; margin-bottom: 4px; }
+.order-id-box span { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 700; color: var(--sienna); letter-spacing: 0.08em; }
+.confirm-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ============================================================
+   CART DRAWER
+============================================================ */
+#cart-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 980;
+  display: none;
+}
+#cart-drawer.open { display: block; }
+.cart-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(42,31,14,0.5);
+  backdrop-filter: blur(4px);
+}
+.cart-panel {
+  position: absolute;
+  top: 0; right: 0;
+  width: min(420px, 100vw);
+  height: 100%;
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+#cart-drawer.open .cart-panel { transform: translateX(0); }
+.cart-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(200,146,42,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-title { font-family: var(--ff-display); font-size: 1.4rem; font-weight: 700; color: var(--ink); }
+.cart-count-badge { background: var(--sienna); color: #fff; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 99px; }
+.cart-body { flex: 1; overflow-y: auto; padding: 16px; }
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--warm-gray);
+  text-align: center;
+  gap: 12px;
+}
+.cart-empty i { font-size: 3rem; opacity: 0.2; }
+.cart-empty p { font-size: 0.9rem; }
+.cart-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(200,146,42,0.1);
+  align-items: flex-start;
+}
+.cart-item-img {
+  width: 64px; height: 64px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-weight: 600; font-size: 0.9rem; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-size { font-size: 0.75rem; color: var(--warm-gray); margin-top: 2px; }
+.cart-item-price { font-weight: 700; color: var(--sienna); font-size: 0.95rem; font-family: var(--ff-display); margin-top: 6px; }
+.cart-qty-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.cqty-btn { width: 26px; height: 26px; border-radius: 6px; background: var(--gold-pale); color: var(--sienna); font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
+.cqty-btn:hover { background: var(--parchment); }
+.cqty-val { font-size: 0.85rem; font-weight: 600; min-width: 20px; text-align: center; }
+.cart-item-remove { color: var(--warm-gray); font-size: 0.85rem; padding: 4px; transition: color var(--transition); flex-shrink: 0; align-self: flex-start; }
+.cart-item-remove:hover { color: var(--red-err); }
+.cart-footer {
+  padding: 20px 24px;
+  border-top: 1px solid rgba(200,146,42,0.12);
+  background: var(--white);
+}
+.cart-subtotal { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--warm-gray); margin-bottom: 6px; }
+.cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
+.btn-checkout {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--sienna), var(--gold));
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: var(--radius-lg);
+  letter-spacing: 0.04em;
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 6px 20px rgba(139,58,30,0.3);
+}
+.btn-checkout:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(139,58,30,0.4); }
+.btn-continue-shopping { width: 100%; padding: 12px; border: 1.5px solid rgba(200,146,42,0.25); color: var(--warm-gray); border-radius: var(--radius-lg); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.03em; transition: all var(--transition); margin-top: 8px; }
+.btn-continue-shopping:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ============================================================
+   ADMIN PANEL
+============================================================ */
+#admin { padding: 80px 0; background: var(--parchment); display: none; }
+#admin.visible { display: block; }
+.admin-tabs { display: flex; gap: 4px; background: var(--white); border-radius: var(--radius-lg); padding: 6px; box-shadow: var(--shadow-sm); margin-bottom: 32px; width: fit-content; }
+.admin-tab {
+  padding: 10px 22px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--warm-gray);
+  letter-spacing: 0.03em;
+  transition: all var(--transition);
+}
+.admin-tab.active { background: var(--sienna); color: var(--white); box-shadow: 0 4px 12px rgba(139,58,30,0.25); }
+.admin-panel { display: none; }
+.admin-panel.active { display: block; }
+.admin-card { background: var(--white); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); border: 1px solid rgba(200,146,42,0.1); margin-bottom: 20px; }
+.admin-card h3 { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
+.admin-form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px; }
+.admin-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid rgba(200,146,42,0.25);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: var(--ink);
+  outline: none;
+  background: var(--white);
+  transition: border-color var(--transition);
+}
+.admin-input:focus { border-color: var(--gold); }
+.admin-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn-admin-action {
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: all var(--transition);
+}
+.btn-green { background: var(--green); color: #fff; }
+.btn-green:hover { background: var(--green-lt); transform: translateY(-1px); }
+.btn-blue { background: #2563EB; color: #fff; }
+.btn-blue:hover { background: #3B82F6; transform: translateY(-1px); }
+.btn-red-outline { border: 1.5px solid var(--red-err); color: var(--red-err); }
+.btn-red-outline:hover { background: rgba(192,57,43,0.08); }
+.admin-product-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(200,146,42,0.1);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.admin-product-row:last-child { border-bottom: none; }
+.apt-info { flex: 1; min-width: 0; }
+.apt-name { font-weight: 600; font-size: 0.9rem; color: var(--ink); }
+.apt-meta { font-size: 0.78rem; color: var(--warm-gray); margin-top: 2px; }
+.apt-btns { display: flex; gap: 8px; }
+.btn-xs { padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.76rem; font-weight: 600; transition: all var(--transition); }
+.btn-edit { background: rgba(200,146,42,0.1); color: var(--gold); }
+.btn-edit:hover { background: rgba(200,146,42,0.2); }
+.btn-del { background: rgba(192,57,43,0.1); color: var(--red-err); }
+.btn-del:hover { background: rgba(192,57,43,0.2); }
+.order-row {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--gold-pale);
+  margin-bottom: 12px;
+}
+.order-row-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+.order-row-id { font-family: var(--ff-display); font-weight: 700; color: var(--sienna); font-size: 1rem; }
+.order-row-date { font-size: 0.75rem; color: var(--warm-gray); }
+.order-row-total { font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+.order-items-list { font-size: 0.8rem; color: var(--warm-gray); line-height: 1.8; }
+.order-status-select {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(200,146,42,0.3);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--white);
+  outline: none;
+  cursor: pointer;
+}
+.stats-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+.stat-card { background: var(--gold-pale); border-radius: var(--radius-md); padding: 20px; border-left: 4px solid var(--gold); }
+.stat-val { font-family: var(--ff-display); font-size: 2rem; font-weight: 700; color: var(--sienna); line-height: 1; }
+.stat-label { font-size: 0.78rem; color: var(--warm-gray); margin-top: 6px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* ============================================================
+   LOGIN MODAL
+============================================================ */
+#login-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(42,31,14,0.75);
+  backdrop-filter: blur(8px);
+  z-index: 1100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+#login-modal.open { display: flex; }
+.login-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  width: min(400px, 100%);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.login-logo { font-size: 3rem; margin-bottom: 16px; }
+.login-title { font-family: var(--ff-display); font-size: 1.8rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.login-sub { font-size: 0.85rem; color: var(--warm-gray); margin-bottom: 28px; }
+.login-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid rgba(200,146,42,0.25);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  margin-bottom: 12px;
+}
+.login-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,146,42,0.12); }
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--sienna), var(--gold));
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  letter-spacing: 0.04em;
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 6px 20px rgba(139,58,30,0.3);
+  margin-top: 4px;
+}
+.btn-login:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(139,58,30,0.4); }
+.btn-login-skip { margin-top: 12px; font-size: 0.8rem; color: var(--warm-gray); display: block; cursor: pointer; transition: color var(--transition); }
+.btn-login-skip:hover { color: var(--gold); }
+
+/* ============================================================
+   PRODUCT QUICK-VIEW MODAL
+============================================================ */
+#qv-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(42,31,14,0.65);
+  backdrop-filter: blur(6px);
+  z-index: 990;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+#qv-modal.open { display: flex; }
+.qv-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  width: min(700px, 100%);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.qv-img { width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+.qv-body { padding: 32px; display: flex; flex-direction: column; }
+.qv-close { align-self: flex-end; width: 32px; height: 32px; border-radius: 50%; background: var(--gold-pale); color: var(--warm-gray); display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: background var(--transition); }
+.qv-close:hover { background: var(--parchment); }
+.qv-cat { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px; margin-top: 12px; }
+.qv-name { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 6px; }
+.qv-size { font-size: 0.82rem; color: var(--warm-gray); margin-bottom: 12px; }
+.qv-desc { font-size: 0.87rem; color: var(--warm-gray); line-height: 1.7; flex: 1; margin-bottom: 20px; }
+.qv-price { font-family: var(--ff-display); font-size: 2rem; font-weight: 700; color: var(--sienna); margin-bottom: 20px; }
+.qv-qty-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.qv-qty-label { font-size: 0.8rem; font-weight: 600; color: var(--warm-gray); letter-spacing: 0.06em; text-transform: uppercase; }
+.qv-qty-ctrl { display: flex; align-items: center; gap: 12px; }
+.qv-qty-btn { width: 34px; height: 34px; border-radius: var(--radius-sm); background: var(--gold-pale); color: var(--sienna); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
+.qv-qty-btn:hover { background: var(--parchment); }
+.qv-qty-val { font-weight: 700; font-size: 1rem; min-width: 24px; text-align: center; }
+
+/* ============================================================
+   TOAST
+============================================================ */
+#toast-container {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink);
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  animation: toastIn 0.3s ease forwards;
+  border-left: 3px solid var(--gold);
+  white-space: nowrap;
+}
+.toast.success { border-left-color: var(--green-lt); }
+.toast.error { border-left-color: var(--red-err); }
+@keyframes toastIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes toastOut { from{opacity:1;transform:translateY(0)} to{opacity:0;transform:translateY(16px)} }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+#footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.7);
+  padding: 64px 0 32px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand { }
+.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.footer-logo-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--sienna), var(--gold)); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.footer-logo-name { font-family: var(--ff-display); font-size: 1.4rem; font-weight: 700; color: var(--white); }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-bottom: 20px; }
+.footer-social { display: flex; gap: 10px; }
+.social-btn { width: 38px; height: 38px; background: rgba(255,255,255,0.07); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 1rem; transition: background var(--transition), color var(--transition); }
+.social-btn:hover { background: var(--sienna); color: var(--white); }
+.footer-col h4 { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.55); transition: color var(--transition); }
+.footer-links a:hover { color: var(--gold-light); }
+.footer-contact-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 0.85rem; align-items: flex-start; }
+.footer-contact-icon { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+.footer-hours { background: rgba(200,146,42,0.1); border: 1px solid rgba(200,146,42,0.2); border-radius: var(--radius-md); padding: 16px 20px; margin-top: 16px; font-size: 0.82rem; }
+.footer-hours h5 { color: var(--gold-light); font-weight: 600; margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.footer-hours p { color: rgba(255,255,255,0.6); line-height: 1.8; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media(max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-img { height: 320px; }
+  .about-badge-float { bottom: 12px; right: 12px; }
+}
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .btn-whatsapp .wa-text { display: none; }
+  .hero-title { font-size: 2.5rem; }
+  .qv-card { grid-template-columns: 1fr; }
+  .qv-img { height: 220px; }
+  .tracking-card { padding: 28px 20px; }
+  .tracking-input-row { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .payment-opts { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media(max-width: 480px) {
+  .hero-ctas { flex-direction: column; }
+  .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+  .why-grid { grid-template-columns: 1fr; }
+  .payment-opts { grid-template-columns: 1fr; }
+}
+</style>
 </head>
-<body class="bg-amber-50 text-gray-800 overflow-x-hidden">
+<body>
 
-    <!-- ADMIN LOGIN -->
-    <div id="login-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
-        <div class="bg-white p-10 rounded-3xl w-full max-w-md relative">
-            <button onclick="hideLoginPrompt()" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-gray-700">×</button>
-            <h3 class="text-2xl font-bold mb-6 text-center">Welcome Back</h3>
-            <p class="text-sm text-gray-500 text-center mb-6">Please login to access the store and manage products.</p>
-            <input id="admin-user" placeholder="Username" class="w-full border p-3 rounded-xl mb-4" autocomplete="username">
-            <input id="admin-pass" type="password" placeholder="Password" class="w-full border p-3 rounded-xl mb-6" autocomplete="current-password">
-            <button onclick="adminLogin()" class="w-full bg-orange-600 text-white py-3 rounded-xl font-semibold">Login</button>
-        </div>
+<!-- ============================================================
+     TOP ANNOUNCEMENT BAR
+============================================================ -->
+<div id="announce-bar">
+  🏪 Visit us at Akki Honda, Hubballi &nbsp;|&nbsp; 📞 <a href="tel:+919019870656">+91 90198 70656</a> &nbsp;|&nbsp; 🕐 Open Mon–Sat, 8AM–9PM
+</div>
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<nav id="navbar">
+  <div class="nav-inner container">
+    <a href="#" class="nav-logo" onclick="scrollToTop(event)">
+      <div class="nav-logo-icon">🛢️</div>
+      <div class="nav-logo-text">
+        <div class="shop-name">S C Unkal</div>
+        <div class="shop-sub">Pure Oils & Kirana · Hubballi</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products" onclick="smoothNav(event,'products')">Products</a></li>
+      <li><a href="#categories" onclick="smoothNav(event,'categories')">Categories</a></li>
+      <li><a href="#tracking" onclick="smoothNav(event,'tracking')">Track Order</a></li>
+      <li><a href="#about" onclick="smoothNav(event,'about')">About</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-admin" onclick="openAdminLogin()" title="Admin Panel">
+        <i class="fa-solid fa-lock"></i> Admin
+      </button>
+      <button class="btn-icon" onclick="openSearch()" title="Search" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="btn-icon" onclick="toggleCart()" title="Cart" aria-label="Cart">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </button>
+      <a href="https://wa.me/919019870656" target="_blank" class="btn-whatsapp" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="wa-text">WhatsApp</span>
+      </a>
+      <button class="hamburger" onclick="toggleDrawer()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </div>
+</nav>
 
-    <!-- NAVBAR -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="tail-container px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-
-                <div class="w-12 h-12 bg-gradient-to-br from-orange-600 to-amber-600 rounded-2xl flex items-center justify-center text-4xl shadow-inner">🛢️</div>
-                <div>
-                    <h1 class="text-3xl font-bold tracking-tighter text-orange-600">S C Unkal</h1>
-                    <p class="text-xs text-gray-500 tracking-wide -mt-1">PURE OILS & KIRANA • HUBBALLI</p>
-                </div>
-            </div>
-
-            <div class="hidden md:flex items-center gap-9 text-sm font-semibold">
-                <a href="#" onclick="document.getElementById('oils').scrollIntoView({behavior:'smooth'})" class="hover:text-orange-600 transition">Oils</a>
-                <a href="#" onclick="document.getElementById('essentials').scrollIntoView({behavior:'smooth'})" class="hover:text-orange-600 transition">Essentials</a>
-                <a href="#" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})" class="hover:text-orange-600 transition">About Us</a>
-                <a href="tel:+919019870656" class="hover:text-orange-600 transition">Contact</a>
-            </div>
-
-            <div class="flex items-center gap-6">
-                <button onclick="openLogin()" 
-class="bg-gray-800 hover:bg-black text-white px-4 py-2 rounded-xl text-sm">
-Admin
-</button>
-                <button onclick="toggleCart()" class="relative text-2xl hover:scale-110 transition">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span id="cart-count" class="absolute -top-1 -right-1 bg-orange-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
-                </button>
-                <button onclick="window.open('https://wa.me/919019870656', '_blank')" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-3xl text-sm font-medium flex items-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                </button>
-                <button onclick="toggleMobileMenu()" class="md:hidden text-3xl" aria-label="Open menu">☰</button>
-            </div>
+<!-- ============================================================
+     MOBILE DRAWER
+============================================================ -->
+<div id="mobile-drawer">
+  <div class="drawer-backdrop" onclick="toggleDrawer()"></div>
+  <div class="drawer-panel">
+    <div class="drawer-header">
+      <div class="nav-logo">
+        <div class="nav-logo-icon" style="width:36px;height:36px;font-size:18px">🛢️</div>
+        <div class="nav-logo-text">
+          <div class="shop-name" style="font-size:1.1rem">S C Unkal</div>
         </div>
-    </nav>
-
-    <!-- MOBILE MENU -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black/60 z-50 hidden">
-        <div class="bg-white w-80 h-full p-6 shadow-xl">
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <h2 class="text-xl font-bold text-orange-600">Menu</h2>
-                    <p class="text-sm text-gray-500">S C Unkal</p>
-                </div>
-                <button onclick="toggleMobileMenu()" class="text-3xl">×</button>
-            </div>
-            <nav class="space-y-4 text-lg font-semibold">
-                <a href="#" onclick="navigateMobile('oils')" class="block text-gray-700 hover:text-orange-600">Oils</a>
-                <a href="#" onclick="navigateMobile('essentials')" class="block text-gray-700 hover:text-orange-600">Essentials</a>
-                <a href="#" onclick="navigateMobile('about')" class="block text-gray-700 hover:text-orange-600">About Us</a>
-                <a href="tel:+919019870656" class="block text-gray-700 hover:text-orange-600">Contact</a>
-                <button onclick="openLogin(); toggleMobileMenu();" class="w-full mt-4 bg-gray-800 hover:bg-black text-white py-3 rounded-xl">Admin</button>
-            </nav>
-        </div>
-        <div class="w-full h-full" onclick="toggleMobileMenu()"></div>
+      </div>
+      <button class="drawer-close" onclick="toggleDrawer()">×</button>
     </div>
-
-    <!-- HERO -->
-    <header class="hero-bg h-[80vh] flex items-center relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/80"></div>
-        
-        <div class="tail-container px-6 relative z-10 text-white text-center">
-            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter mb-4">
-                PURE EDIBLE OILS<br>& DAILY KIRANA
-            </h1>
-            <p class="text-2xl md:text-3xl font-light text-amber-100 mb-8">
-                Sunflower • Mustard • Groundnut • Palm • Coconut & More
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="document.getElementById('oils').scrollIntoView({behavior:'smooth'})" 
-                        class="bg-orange-600 hover:bg-orange-700 text-white font-semibold text-xl px-10 py-5 rounded-3xl flex items-center justify-center gap-3 shadow-xl">
-                    SHOP NOW
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-                <a href="tel:+919019870656" 
-                   class="border-2 border-white hover:bg-white hover:text-black text-xl font-semibold px-10 py-5 rounded-3xl flex items-center gap-3 transition">
-                    <i class="fa-solid fa-phone"></i> Call +91 90198 70656
-                </a>
-            </div>
-
-            <div class="mt-12 grid grid-cols-3 gap-6 text-center text-sm max-w-md mx-auto">
-                <div><i class="fa-solid fa-leaf text-3xl mb-2"></i><p>100% Pure</p></div>
-                <div><i class="fa-solid fa-truck text-3xl mb-2"></i><p>Local Delivery</p></div>
-                <div><i class="fa-solid fa-rupee-sign text-3xl mb-2"></i><p>Best Rates</p></div>
-            </div>
-        </div>
-    </header>
-
-    <!-- OILS SECTION -->
-    <section id="oils" class="py-20 bg-white">
-        <div class="tail-container px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">Our Pure Edible Oils</h2>
-            <p class="text-center text-gray-600 mb-8">Fresh, unadulterated oils for healthy North Karnataka cooking</p>
-
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-                <div class="flex gap-2 items-center">
-                    <button onclick="setCategoryFilter('all')" id="filter-all" class="filter-btn px-4 py-2 bg-orange-600 text-white rounded-full">All</button>
-                    <button onclick="setCategoryFilter('oils')" id="filter-oils" class="filter-btn px-4 py-2 bg-white text-gray-700 border border-gray-200 rounded-full hover:bg-orange-50">Oils</button>
-                    <button onclick="setCategoryFilter('essentials')" id="filter-essentials" class="filter-btn px-4 py-2 bg-white text-gray-700 border border-gray-200 rounded-full hover:bg-orange-50">Essentials</button>
-                </div>
-                <div class="relative w-full sm:w-72">
-                    <input id="product-search" type="search" placeholder="Search products..." class="w-full border border-gray-300 rounded-full px-4 py-3 pr-12 focus:ring-2 focus:ring-orange-500" oninput="renderProducts()">
-                    <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                </div>
-            </div>
-
-            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- JS populated -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ESSENTIALS -->
-    <section id="essentials" class="py-16 bg-amber-50">
-        <div class="tail-container px-6">
-            <h2 class="text-4xl font-bold text-center mb-10">Daily Kirana Needs</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center">
-                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🌾</div><h4 class="font-semibold">Atta & Rice</h4></div>
-                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🥣</div><h4 class="font-semibold">Dal & Pulses</h4></div>
-                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🌶️</div><h4 class="font-semibold">Spices</h4></div>
-                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🧼</div><h4 class="font-semibold">Soaps & Detergents</h4></div>
-                <div class="bg-white p-6 rounded-3xl shadow hover:shadow-xl transition"><div class="text-6xl mb-4">🥥</div><h4 class="font-semibold">Coconut Products</h4></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
-        <div class="tail-container px-6 max-w-3xl mx-auto text-center">
-            <div class="w-24 h-24 mx-auto bg-white rounded-full shadow flex items-center justify-center text-6xl mb-8">👨‍🌾</div>
-            <h2 class="text-4xl font-bold mb-6">Namaste from Vihaan Unkal</h2>
-            <p class="text-lg leading-relaxed text-gray-700 mb-8">
-                Welcome to S C Unkal – your trusted kirana store in Akki Honda, Hubballi since many years. 
-                We specialize in pure, fresh edible oils (sunflower, mustard, groundnut, palm, coconut and more) 
-                along with all daily household essentials. Quality and fair prices guaranteed. 
-                Visit us or order via WhatsApp/call – happy to serve our Hubballi neighbours!
-            </p>
-            <p class="text-xl font-semibold text-orange-600">Vihaan Unkal<br>Owner, S C Unkal</p>
-            <p class="mt-4 text-gray-600">Akki Honda, Hubballi – 580028, Karnataka</p>
-        </div>
-    </section>
-    <!-- ADMIN DASHBOARD -->
-<section id="admin" class="py-20 bg-white">
-
-<div class="tail-container px-6">
-
-<h2 class="text-4xl font-bold text-center mb-12">
-Store Management System
-</h2>
-
-<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
-
-<div class="bg-orange-50 p-8 rounded-3xl shadow text-center">
-<i class="fa-solid fa-chart-line text-4xl text-orange-600 mb-4"></i>
-<h3 class="text-xl font-semibold">Dashboard</h3>
-</div>
-
-<div class="bg-orange-50 p-8 rounded-3xl shadow text-center">
-<i class="fa-solid fa-box text-4xl text-orange-600 mb-4"></i>
-<h3 class="text-xl font-semibold">Products</h3>
-</div>
-
-<div class="bg-orange-50 p-8 rounded-3xl shadow text-center">
-<i class="fa-solid fa-layer-group text-4xl text-orange-600 mb-4"></i>
-<h3 class="text-xl font-semibold">Categories</h3>
-</div>
-
-<div class="bg-orange-50 p-8 rounded-3xl shadow text-center">
-<i class="fa-solid fa-truck text-4xl text-orange-600 mb-4"></i>
-<h3 class="text-xl font-semibold">Suppliers</h3>
-</div>
-
-<div class="bg-orange-50 p-8 rounded-3xl shadow text-center">
-<i class="fa-solid fa-file-chart-column text-4xl text-orange-600 mb-4"></i>
-<h3 class="text-xl font-semibold">Reports</h3>
-</div>
-
-<div class="bg-orange-50 p-8 rounded-3xl shadow text-center">
-<i class="fa-solid fa-user text-4xl text-orange-600 mb-4"></i>
-<h3 class="text-xl font-semibold">Profile</h3>
-</div>
-
-</div>
-<div id="product-admin" class="hidden mt-16">
-
-<h3 class="text-3xl font-bold mb-6">Manage Products</h3>
-
-<div class="grid md:grid-cols-4 gap-4 mb-8">
-
-<input id="p-name" placeholder="Product Name" class="border p-3 rounded-xl">
-<input id="p-size" placeholder="Size" class="border p-3 rounded-xl">
-<input id="p-price" placeholder="Price" class="border p-3 rounded-xl">
-<input id="p-img" placeholder="Image URL" class="border p-3 rounded-xl">
-
-</div>
-
-<div class="flex flex-col sm:flex-row sm:items-center gap-4">
-    <button onclick="addProductAdmin()" class="bg-green-600 text-white px-6 py-3 rounded-xl">
-        Add Product
+    <ul class="drawer-nav">
+      <li><a href="#" onclick="drawerNav('products')">🛒 Products</a></li>
+      <li><a href="#" onclick="drawerNav('categories')">📦 Categories</a></li>
+      <li><a href="#" onclick="drawerNav('tracking')">📍 Track Order</a></li>
+      <li><a href="#" onclick="drawerNav('about')">👨‍🌾 About Us</a></li>
+    </ul>
+    <div class="drawer-divider"></div>
+    <ul class="drawer-nav">
+      <li><a href="tel:+919019870656">📞 +91 90198 70656</a></li>
+      <li><a href="https://wa.me/919019870656" target="_blank" rel="noopener">💬 WhatsApp Order</a></li>
+    </ul>
+    <div class="drawer-divider"></div>
+    <button onclick="openAdminLogin();toggleDrawer();" style="width:100%;padding:12px;background:var(--ink);color:var(--gold-light);border-radius:var(--radius-md);font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">
+      <i class="fa-solid fa-lock"></i> Admin Panel
     </button>
-    <button onclick="exportProducts()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl">
-        Export JSON
-    </button>
-    <button onclick="resetProducts()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl">
-        Reset Defaults
-    </button>
+  </div>
 </div>
 
-<div id="admin-products" class="mt-8"></div>
-
-<div id="admin-orders" class="mt-12"></div>
-
-</div>
-</div>
-
+<!-- ============================================================
+     HERO SECTION
+============================================================ -->
+<section id="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-pattern"></div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow">
+      <i class="fa-solid fa-leaf" style="font-size:0.7rem"></i>
+      Trusted in Hubballi Since Decades
+    </div>
+    <h1 class="hero-title">
+      Pure Edible Oils<br>& <em>Daily Kirana</em>
+    </h1>
+    <p class="hero-subtitle">Sunflower · Mustard · Groundnut · Palm · Coconut & More</p>
+    <p class="hero-tagline">"Shuddha Enne, Swachha Jeevana" — Pure Oil, Healthy Life</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="smoothNav(null,'products')">
+        <i class="fa-solid fa-basket-shopping"></i> Shop Now
+      </button>
+      <a href="tel:+919019870656" class="btn-outline">
+        <i class="fa-solid fa-phone"></i> Call +91 90198 70656
+      </a>
+    </div>
+    <div class="hero-badges">
+      <div class="hero-badge">
+        <div class="hero-badge-icon">🌿</div>
+        <div>100% Pure &<br>Unadulterated</div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">🚚</div>
+        <div>Local Delivery<br>Hubballi</div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">💰</div>
+        <div>Wholesale &<br>Retail Rates</div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">⭐</div>
+        <div>Trusted by<br>Hundreds of Families</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
 </section>
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="tail-container px-6">
-            <div class="grid md:grid-cols-4 gap-10">
-                <div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center text-3xl">🛢️</div>
-                        <span class="text-2xl font-bold">S C Unkal</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">Pure oils & daily kirana essentials<br>Akki Honda, Hubballi – 580020</p>
-                </div>
 
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <div class="space-y-2 text-sm text-gray-400">
-                        <p class="cursor-pointer hover:text-white">Oils</p>
-                        <p class="cursor-pointer hover:text-white">Essentials</p>
-                        <p class="cursor-pointer hover:text-white">Contact Us</p>
-                    </div>
-                </div>
+<!-- ============================================================
+     TRUST MARQUEE STRIP
+============================================================ -->
+<div id="trust-strip">
+  <div class="trust-inner" id="marquee-inner">
+    <!-- JS duplicated for infinite scroll -->
+  </div>
+</div>
 
-                <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <div class="text-sm text-gray-400 space-y-2">
-                        <p>📍 Akki Honda, Hubballi, Karnataka 580028</p>
-                        <p>📞 <a href="tel:+919019870656" class="hover:text-white">+91 90198 70656</a></p>
-                        <p>💬 <a href="https://wa.me/919019870656" class="hover:text-white">WhatsApp same number</a></p>
-                    </div>
-                </div>
+<!-- ============================================================
+     PRODUCTS SECTION
+============================================================ -->
+<section id="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Our Collection</span>
+      <h2 class="section-title">Fresh & Pure Oils</h2>
+      <p class="section-subtitle">Locally sourced and quality-assured edible oils for healthy North Karnataka cooking.</p>
+    </div>
+    <div class="filter-row">
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="setFilter('all',this)">All Products</button>
+        <button class="filter-tab" data-filter="oils" onclick="setFilter('oils',this)">Cooking Oils</button>
+        <button class="filter-tab" data-filter="essentials" onclick="setFilter('essentials',this)">Daily Essentials</button>
+      </div>
+      <div class="search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" id="product-search" placeholder="Search products…" oninput="renderProducts()" autocomplete="off">
+      </div>
+    </div>
+    <div id="products-grid"></div>
+  </div>
+</section>
 
-                <div>
-                    <h4 class="font-semibold mb-4">Connect</h4>
-                    <div class="flex gap-6 text-2xl">
-                        <a href="https://wa.me/919019870656"><i class="fa-brands fa-whatsapp hover:text-green-400"></i></a>
-                        <i class="fa-brands fa-phone hover:text-blue-400 cursor-pointer"></i>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-6">Serving Hubballi with trust & quality</p>
-                </div>
-            </div>
+<!-- ============================================================
+     CATEGORIES SECTION
+============================================================ -->
+<section id="categories">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-eyebrow">Browse by Type</span>
+      <h2 class="section-title">Daily Kirana Essentials</h2>
+      <p class="section-subtitle">Everything you need for your home kitchen, from staple grains to fresh spices.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="setFilter('oils',document.querySelector('[data-filter=oils]'));smoothNav(null,'products')">
+        <span class="cat-emoji">🫙</span>
+        <div class="cat-name">Edible Oils</div>
+        <div class="cat-count">5 products</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🌾</span>
+        <div class="cat-name">Atta & Rice</div>
+        <div class="cat-count">Staple grains</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🥣</span>
+        <div class="cat-name">Dal & Pulses</div>
+        <div class="cat-count">Protein essentials</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🌶️</span>
+        <div class="cat-name">Spices</div>
+        <div class="cat-count">Masala & More</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🧼</span>
+        <div class="cat-name">Soaps & Detergents</div>
+        <div class="cat-count">Home care</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🥥</span>
+        <div class="cat-name">Coconut Products</div>
+        <div class="cat-count">Natural & Pure</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🫘</span>
+        <div class="cat-name">Dry Fruits</div>
+        <div class="cat-count">Seasonal stock</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🧂</span>
+        <div class="cat-name">Salt & Sugar</div>
+        <div class="cat-count">Kitchen basics</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="border-t border-gray-800 mt-12 pt-6 text-center text-sm text-gray-500">
-                © 2026 S C Unkal • Proudly Local – Hubballi, Karnataka
-            </div>
+<!-- ============================================================
+     ABOUT SECTION
+============================================================ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1606914469516-8a0bac95a9b4?w=800&q=80" alt="Oil shop interior" class="about-img" loading="lazy">
+        <div class="about-badge-float">
+          <div class="years">20+</div>
+          <div class="years-label">Years of Trust</div>
         </div>
-    </footer>
-
-    <!-- CART MODAL (kept simple) -->
-    <div id="cart-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-end md:items-center justify-center">
-        <div class="bg-white w-full max-w-lg rounded-t-3xl md:rounded-3xl shadow-2xl max-h-[85vh] overflow-hidden">
-            <div class="px-6 py-6 border-b bg-orange-50 flex justify-between items-center">
-                <h3 class="text-2xl font-bold">Your Cart</h3>
-                <button onclick="toggleCart()" class="text-3xl">×</button>
+      </div>
+      <div class="about-copy">
+        <span class="section-eyebrow">Our Story</span>
+        <h2 class="section-title">Namaste from<br>Vihaan Unkal</h2>
+        <p>Welcome to <strong>S C Unkal</strong> — your trusted kirana store in Akki Honda, Hubballi. We have been serving local families with <strong>pure, fresh edible oils</strong> and daily household essentials for over two decades.</p>
+        <p>We specialize in cold-pressed and premium-grade oils — sunflower, mustard, groundnut, palm, and coconut — sourced directly from trusted suppliers. No adulteration, no compromise.</p>
+        <p>Quality, fair prices, and a warm welcome — that's the S C Unkal promise to every Hubballi family.</p>
+        <div class="why-grid">
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <div class="why-label">Quality Guarantee</div>
+              <div class="why-desc">Every product tested for purity before stocking.</div>
             </div>
-            <div id="cart-items" class="p-6 overflow-auto max-h-[50vh]"></div>
-            <div class="p-6 border-t">
-                <div class="flex justify-between text-xl mb-6">
-                    <span>Total</span>
-                    <span id="cart-total" class="font-bold">₹0</span>
-                </div>
-                <button onclick="checkout()" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-5 rounded-3xl text-lg font-semibold">
-                    Order via WhatsApp / COD
-                </button>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-handshake"></i></div>
+            <div>
+              <div class="why-label">Local Trust</div>
+              <div class="why-desc">Trusted by hundreds of Hubballi families.</div>
             </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div>
+              <div class="why-label">Local Delivery</div>
+              <div class="why-desc">Quick delivery within Hubballi city limits.</div>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-tags"></i></div>
+            <div>
+              <div class="why-label">Best Rates</div>
+              <div class="why-desc">Wholesale prices available on bulk orders.</div>
+            </div>
+          </div>
         </div>
+        <div class="owner-sig">
+          <div class="owner-avatar">👨‍🌾</div>
+          <div>
+            <div class="owner-name">Vihaan Unkal</div>
+            <div class="owner-title">Owner, S C Unkal · Akki Honda, Hubballi 580028</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-eyebrow">Customer Love</span>
+      <h2 class="section-title">What Our Customers Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"Best groundnut oil in Hubballi! We have been buying from S C Unkal for our entire family for 12 years. Pure and fresh every time."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">🙂</div>
+          <div>
+            <div class="testi-name">Savitri Patil</div>
+            <div class="testi-location">Akki Honda, Hubballi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"Vihaan anna always gives fair rates and honest quality. No adulteration, no drama. Our restaurant depends on him for bulk oil orders."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">👨</div>
+          <div>
+            <div class="testi-name">Ravi Desai</div>
+            <div class="testi-location">Keshwapur, Hubballi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"Love that I can now order on WhatsApp and they deliver to my home. The mustard oil smells so authentic — proper North Karnataka flavour!"</div>
+        <div class="testi-author">
+          <div class="testi-avatar">👩</div>
+          <div>
+            <div class="testi-name">Meera Kulkarni</div>
+            <div class="testi-location">Vidyanagar, Hubballi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ORDER TRACKING SECTION
+============================================================ -->
+<section id="tracking">
+  <div class="container">
+    <div class="tracking-card">
+      <span class="section-eyebrow">Real-Time Updates</span>
+      <h2 class="section-title">Track Your Order</h2>
+      <p class="section-subtitle" style="margin-top:8px">Enter your Order ID to see the current status of your delivery.</p>
+      <div class="tracking-input-row">
+        <input type="text" class="tracking-input" id="track-input" placeholder="e.g. SCU-20240001" maxlength="20">
+        <button class="btn-track" onclick="trackOrder()">
+          <i class="fa-solid fa-magnifying-glass"></i> Track
+        </button>
+      </div>
+      <div id="tracking-result"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ADMIN PANEL (shown after login)
+============================================================ -->
+<section id="admin">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Store Management</span>
+      <h2 class="section-title">Admin Dashboard</h2>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('dashboard',this)">Dashboard</button>
+      <button class="admin-tab" onclick="switchAdminTab('products-mgmt',this)">Products</button>
+      <button class="admin-tab" onclick="switchAdminTab('orders-mgmt',this)">Orders</button>
     </div>
 
-    <!-- PRODUCT QUICK VIEW -->
-    <div id="product-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden">
-            <div class="flex justify-between items-start p-6 border-b">
-                <div>
-                    <h3 id="modal-title" class="text-2xl font-bold"></h3>
-                    <p id="modal-category" class="text-sm text-gray-500"></p>
-                </div>
-                <button onclick="closeProductModal()" class="text-3xl">×</button>
-            </div>
-            <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <img id="modal-img" src="" alt="" class="w-full h-64 object-cover rounded-2xl">
-                <div class="space-y-4">
-                    <p id="modal-desc" class="text-gray-700"></p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-orange-600" id="modal-price"></span>
-                        <div class="flex items-center gap-2">
-                            <button onclick="updateModalQty(-1)" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">-</button>
-                            <span id="modal-qty" class="text-lg font-semibold">1</span>
-                            <button onclick="updateModalQty(1)" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">+</button>
-                        </div>
-                    </div>
-                    <button onclick="addFromModal()" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-2xl font-semibold">
-                        Add to cart
-                    </button>
-                </div>
-            </div>
-        </div>
+    <!-- Dashboard Tab -->
+    <div class="admin-panel active" id="tab-dashboard">
+      <div class="admin-card">
+        <h3>Store Overview</h3>
+        <div class="stats-row" id="stats-row"></div>
+      </div>
     </div>
 
-    <!-- TOAST -->
-    <div id="toast" class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-green-600 text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center gap-3 z-50"></div>
+    <!-- Products Management Tab -->
+    <div class="admin-panel" id="tab-products-mgmt">
+      <div class="admin-card">
+        <h3>Add New Product</h3>
+        <div class="admin-form-grid">
+          <input class="admin-input" id="p-name" placeholder="Product Name">
+          <input class="admin-input" id="p-size" placeholder="Size (e.g. 1 L)">
+          <input class="admin-input" id="p-price" placeholder="Price (₹)" type="number">
+          <input class="admin-input" id="p-img" placeholder="Image URL">
+          <select class="admin-input" id="p-category">
+            <option value="oils">Cooking Oils</option>
+            <option value="essentials">Essentials</option>
+          </select>
+          <input class="admin-input" id="p-desc" placeholder="Short description">
+        </div>
+        <div class="admin-actions">
+          <button class="btn-admin-action btn-green" onclick="addProductAdmin()"><i class="fa-solid fa-plus"></i> Add Product</button>
+          <button class="btn-admin-action btn-blue" onclick="exportProducts()"><i class="fa-solid fa-download"></i> Export JSON</button>
+          <button class="btn-admin-action btn-red-outline" onclick="resetProducts()"><i class="fa-solid fa-rotate-left"></i> Reset Defaults</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>All Products</h3>
+        <div id="admin-products-list"></div>
+      </div>
+    </div>
 
-    <script>
-        const DEFAULT_PRODUCTS = [
-            {
-                id: 1,
-                name: "Sunflower Oil",
-                category: "oils",
-                size: "1 L",
-                price: 145,
-                img: "images/product1.jpg",
-                description: "Cold-pressed sunflower oil, rich in Vitamin E. Great for daily cooking and deep frying."
-            },
-            {
-                id: 2,
-                name: "Mustard Oil",
-                category: "oils",
-                size: "1 L",
-                price: 160,
-                img: "images/product4.jpg",
-                description: "Strong aroma, high smoking point, and perfect for traditional North Karnataka recipes."
-            },
-            {
-                id: 3,
-                name: "Groundnut Oil",
-                category: "oils",
-                size: "1 L",
-                price: 180,
-                img: "images/product2.jpg",
-                description: "Light and nutritious; a kitchen staple for bijapur-style frying and tempering."
-            },
-            {
-                id: 4,
-                name: "Palm Oil",
-                category: "oils",
-                size: "1 L",
-                price: 130,
-                img: "images/product3.jpg",
-                description: "Economical and stable for long shelf life. Ideal for bulk cooking."
-            },
-            {
-                id: 5,
-                name: "Coconut Oil",
-                category: "oils",
-                size: "500 ml",
-                price: 190,
-                img: "images/product7.jpg",
-                description: "Pure coconut oil, great for beauty, hair, and gentle cooking."
-            }
-        ];
+    <!-- Orders Tab -->
+    <div class="admin-panel" id="tab-orders-mgmt">
+      <div class="admin-card">
+        <h3>Recent Orders</h3>
+        <div id="admin-orders-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        let products = [];
-        let cart = [];
-        let orders = [];
-        let categoryFilter = 'all';
-        let modalQty = 1;
-        let activeModalProductId = null;
-        let isAuthenticated = false;
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">🛢️</div>
+          <div class="footer-logo-name">S C Unkal</div>
+        </div>
+        <p>Your trusted pure oils and kirana shop in Akki Honda, Hubballi. Serving the community with honest quality and fair prices for over two decades.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/919019870656" class="social-btn" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="tel:+919019870656" class="social-btn" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+        </div>
+        <div class="footer-hours">
+          <h5>🕐 Store Hours</h5>
+          <p>Mon – Sat: 8:00 AM – 9:00 PM<br>Sunday: 9:00 AM – 1:00 PM</p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="smoothNav(null,'products')">Our Products</a></li>
+          <li><a href="#" onclick="smoothNav(null,'categories')">Categories</a></li>
+          <li><a href="#" onclick="smoothNav(null,'tracking')">Track Order</a></li>
+          <li><a href="#" onclick="smoothNav(null,'about')">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Oils</h4>
+        <ul class="footer-links">
+          <li><a href="#">Sunflower Oil</a></li>
+          <li><a href="#">Mustard Oil</a></li>
+          <li><a href="#">Groundnut Oil</a></li>
+          <li><a href="#">Palm Oil</a></li>
+          <li><a href="#">Coconut Oil</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot footer-contact-icon"></i>
+          <span>Akki Honda, Hubballi, Karnataka 580028</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone footer-contact-icon"></i>
+          <a href="tel:+919019870656">+91 90198 70656</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-brands fa-whatsapp footer-contact-icon"></i>
+          <a href="https://wa.me/919019870656" target="_blank" rel="noopener">WhatsApp same number</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 S C Unkal · Proudly Local – Hubballi, Karnataka</span>
+      <span>Made with ❤️ for Hubballi</span>
+    </div>
+  </div>
+</footer>
 
-        function clone(value) {
-            return typeof structuredClone === 'function' ? structuredClone(value) : JSON.parse(JSON.stringify(value));
-        }
+<!-- ============================================================
+     CART DRAWER
+============================================================ -->
+<div id="cart-drawer">
+  <div class="cart-backdrop" onclick="toggleCart()"></div>
+  <div class="cart-panel">
+    <div class="cart-header">
+      <div>
+        <div class="cart-title">Your Cart</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="cart-count-badge" id="cart-drawer-count">0 items</span>
+        <button class="modal-close" onclick="toggleCart()">×</button>
+      </div>
+    </div>
+    <div class="cart-body" id="cart-items"></div>
+    <div class="cart-footer" id="cart-footer" style="display:none">
+      <div class="cart-subtotal"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
+      <div style="font-size:0.75rem;color:var(--warm-gray);margin-bottom:10px">Delivery charges calculated at checkout</div>
+      <div class="cart-total"><span>Total</span><span id="cart-total">₹0</span></div>
+      <button class="btn-checkout" onclick="openCheckout()">
+        <i class="fa-solid fa-bag-shopping"></i> Proceed to Checkout
+      </button>
+      <button class="btn-continue-shopping" onclick="toggleCart()">Continue Shopping</button>
+    </div>
+  </div>
+</div>
 
-        function showLoginPrompt() {
-            document.getElementById('login-modal').classList.remove('hidden');
-            document.body.classList.add('overflow-hidden', 'login-locked');
-        }
+<!-- ============================================================
+     CHECKOUT MODAL
+============================================================ -->
+<div id="checkout-overlay">
+  <div class="checkout-modal" id="checkout-modal">
+    <!-- JS rendered -->
+  </div>
+</div>
 
-        function hideLoginPrompt() {
-            if (!isAuthenticated) {
-                showToast('Please login to continue');
-                return;
-            }
-            document.getElementById('login-modal').classList.add('hidden');
-            document.body.classList.remove('overflow-hidden', 'login-locked');
-        }
+<!-- ============================================================
+     PRODUCT QUICK VIEW MODAL
+============================================================ -->
+<div id="qv-modal">
+  <div style="position:absolute;inset:0" onclick="closeQV()"></div>
+  <div class="qv-card" style="position:relative;z-index:1">
+    <img id="qv-img" src="" alt="" class="qv-img">
+    <div class="qv-body">
+      <button class="qv-close" onclick="closeQV()">×</button>
+      <div class="qv-cat" id="qv-cat"></div>
+      <div class="qv-name" id="qv-name"></div>
+      <div class="qv-size" id="qv-size"></div>
+      <div class="qv-desc" id="qv-desc"></div>
+      <div class="qv-price" id="qv-price"></div>
+      <div class="qv-qty-row">
+        <span class="qv-qty-label">Qty</span>
+        <div class="qv-qty-ctrl">
+          <button class="qv-qty-btn" onclick="updateQVQty(-1)">−</button>
+          <span class="qv-qty-val" id="qv-qty">1</span>
+          <button class="qv-qty-btn" onclick="updateQVQty(1)">+</button>
+        </div>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;margin-top:4px" onclick="addFromQV()">
+        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+      </button>
+    </div>
+  </div>
+</div>
 
-        function requireLogin() {
-            if (!isAuthenticated) {
-                showLoginPrompt();
-                showToast('Please login to continue');
-                return false;
-            }
-            return true;
-        }
+<!-- ============================================================
+     LOGIN MODAL
+============================================================ -->
+<div id="login-modal">
+  <div style="position:absolute;inset:0" onclick="closeLoginModal()"></div>
+  <div class="login-card" style="position:relative;z-index:1">
+    <div class="login-logo">🔐</div>
+    <div class="login-title">Admin Login</div>
+    <div class="login-sub">Access the store management panel</div>
+    <input class="login-input" id="admin-user" placeholder="Username" autocomplete="username" onkeydown="if(event.key==='Enter')adminLogin()">
+    <input class="login-input" id="admin-pass" type="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')adminLogin()">
+    <button class="btn-login" onclick="adminLogin()">Login</button>
+    <span class="btn-login-skip" onclick="closeLoginModal()">← Go back to shop</span>
+  </div>
+</div>
 
-        const storageKeys = {
-            products: 'scunkal_products',
-            cart: 'scunkal_cart',
-            orders: 'scunkal_orders',
-            category: 'scunkal_category'
-        };
+<!-- TOAST -->
+<div id="toast-container"></div>
 
-        function saveState() {
-            localStorage.setItem(storageKeys.products, JSON.stringify(products));
-            localStorage.setItem(storageKeys.cart, JSON.stringify(cart));
-            localStorage.setItem(storageKeys.orders, JSON.stringify(orders));
-            localStorage.setItem(storageKeys.category, categoryFilter);
-        }
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+/* =========================================================
+   DATA
+========================================================= */
+const DEFAULT_PRODUCTS = [
+  { id:1, name:"Sunflower Oil",   category:"oils",       size:"1 L",     price:145, img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=75", description:"Cold-pressed sunflower oil, rich in Vitamin E. Light and neutral — ideal for daily cooking, deep frying and baking." },
+  { id:2, name:"Mustard Oil",     category:"oils",       size:"1 L",     price:160, img:"https://images.unsplash.com/photo-1588684069234-a89dc7e8fe38?w=400&q=75", description:"Strong aroma, high smoking point. Authentic North Karnataka flavour — perfect for traditional tadkas, pickles and marinades." },
+  { id:3, name:"Groundnut Oil",   category:"oils",       size:"1 L",     price:180, img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=75", description:"Light and nutritious. A kitchen staple for Bijapur-style frying and tempering — adds a mild nutty flavour to dishes." },
+  { id:4, name:"Palm Oil",        category:"oils",       size:"1 L",     price:130, img:"https://images.unsplash.com/photo-1601386521418-1c1c5427f4dc?w=400&q=75", description:"Economical and stable for long shelf life. Ideal for bulk cooking, commercial kitchens and food manufacturing." },
+  { id:5, name:"Coconut Oil",     category:"oils",       size:"500 ml",  price:190, img:"https://images.unsplash.com/photo-1611171711912-e3f65fe28f9e?w=400&q=75", description:"Pure virgin coconut oil — great for beauty, hair care and gentle cooking. Naturally fragrant and nutritious." },
+  { id:6, name:"Toor Dal",        category:"essentials", size:"1 kg",    price:120, img:"https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&q=75", description:"Premium quality toor dal sourced from Karnataka farms. Clean, fresh, and quick to cook." },
+  { id:7, name:"Chakki Fresh Atta", category:"essentials", size:"5 kg", price:275, img:"https://images.unsplash.com/photo-1612252208573-b6c54d6a2b2d?w=400&q=75", description:"Stone-ground whole wheat flour. Fresh milled for maximum nutrition and that authentic home-made roti taste." },
+];
 
-        function loadState() {
-            const storedProducts = localStorage.getItem(storageKeys.products);
-            const storedCart = localStorage.getItem(storageKeys.cart);
-            const storedCategory = localStorage.getItem(storageKeys.category);
-            const storedOrders = localStorage.getItem(storageKeys.orders);
+const STATUS_STEPS = ["Received","Processing","Packed","Out for Delivery","Delivered"];
 
-            products = storedProducts ? JSON.parse(storedProducts) : clone(DEFAULT_PRODUCTS);
-            cart = storedCart ? JSON.parse(storedCart) : [];
-            orders = storedOrders ? JSON.parse(storedOrders) : [];
-            categoryFilter = storedCategory || 'all';
+let products = [];
+let cart = [];
+let orders = [];
+let activeFilter = 'all';
+let isAdmin = false;
+let qvProductId = null;
+let qvQty = 1;
+let activeCheckoutStep = 'form'; // 'form' | 'confirm'
+let selectedPayment = 'cod';
 
-            setCategoryFilter(categoryFilter, false);
-            updateCartCount();
-        }
+/* =========================================================
+   STORAGE
+========================================================= */
+const SK = { p:'scunkal_products', c:'scunkal_cart', o:'scunkal_orders' };
+function save() {
+  try {
+    localStorage.setItem(SK.p, JSON.stringify(products));
+    localStorage.setItem(SK.c, JSON.stringify(cart));
+    localStorage.setItem(SK.o, JSON.stringify(orders));
+  } catch(e) { console.warn('Storage write failed', e); }
+}
+function load() {
+  try {
+    const sp = localStorage.getItem(SK.p);
+    const sc = localStorage.getItem(SK.c);
+    const so = localStorage.getItem(SK.o);
+    products = sp ? JSON.parse(sp) : deepClone(DEFAULT_PRODUCTS);
+    cart     = sc ? JSON.parse(sc) : [];
+    orders   = so ? JSON.parse(so) : [];
+  } catch(e) {
+    products = deepClone(DEFAULT_PRODUCTS);
+    cart = []; orders = [];
+  }
+}
+function deepClone(v) { return JSON.parse(JSON.stringify(v)); }
 
-        function resetProducts() {
-            products = clone(DEFAULT_PRODUCTS);
-            saveState();
-            renderProducts();
-            renderAdminProducts();
-            showToast('Products restored to defaults');
-        }
+/* =========================================================
+   NAVBAR SCROLL EFFECT
+========================================================= */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 48);
+}, { passive: true });
 
-        function exportProducts() {
-            const blob = new Blob([JSON.stringify(products, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'scunkal-products.json';
-            a.click();
-            URL.revokeObjectURL(url);
-            showToast('Product list exported');
-        }
+/* =========================================================
+   NAVIGATION HELPERS
+========================================================= */
+function smoothNav(e, id) {
+  if (e) e.preventDefault();
+  document.getElementById(id)?.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+function scrollToTop(e) { e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' }); }
+function toggleDrawer() {
+  document.getElementById('mobile-drawer').classList.toggle('open');
+}
+function drawerNav(id) {
+  toggleDrawer();
+  setTimeout(() => smoothNav(null, id), 300);
+}
+function openSearch() { smoothNav(null,'products'); document.getElementById('product-search').focus(); }
 
-        function setCategoryFilter(category, render = true) {
-            categoryFilter = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.id === `filter-${category}`);
-            });
-            if (render) renderProducts();
-        }
+/* =========================================================
+   TRUST MARQUEE BUILD
+========================================================= */
+function buildMarquee() {
+  const items = [
+    '🌿 100% Pure Edible Oils',
+    '✅ Unadulterated Quality',
+    '🚚 Local Delivery – Hubballi',
+    '⭐ Trusted Since 2 Decades',
+    '💰 Best Wholesale & Retail Rates',
+    '📞 Order by Call or WhatsApp',
+    '🛡️ Quality Guaranteed',
+    '🏪 Akki Honda, Hubballi 580028',
+  ];
+  const html = [...items, ...items].map(item =>
+    `<span class="trust-item">${item}</span><span class="trust-dot">●</span>`
+  ).join('');
+  document.getElementById('marquee-inner').innerHTML = html;
+}
 
-        function getFilteredProducts() {
-            const query = document.getElementById('product-search')?.value?.toLowerCase().trim() || '';
-            return products
-                .filter(p => categoryFilter === 'all' || p.category === categoryFilter)
-                .filter(p => {
-                    if (!query) return true;
-                    return [p.name, p.description, p.category].some(field => field.toLowerCase().includes(query));
-                });
-        }
+/* =========================================================
+   PRODUCT FILTER & RENDER
+========================================================= */
+function setFilter(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderProducts();
+}
+function getFiltered() {
+  const q = (document.getElementById('product-search')?.value || '').toLowerCase().trim();
+  return products.filter(p => {
+    const matchCat = activeFilter === 'all' || p.category === activeFilter;
+    const matchQ   = !q || [p.name,p.description,p.category,p.size].some(f=>(f||'').toLowerCase().includes(q));
+    return matchCat && matchQ;
+  });
+}
+function renderProducts() {
+  const grid = document.getElementById('products-grid');
+  const list = getFiltered();
+  if (!list.length) {
+    grid.innerHTML = `<div class="no-products"><i class="fa-solid fa-jar-wheat"></i><p>No products found. Try a different search or category.</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p => {
+    const badgeCls = p.category === 'oils' ? '' : 'essentials';
+    const badgeText = p.category === 'oils' ? 'OIL' : 'ESSENTIAL';
+    return `<div class="product-card">
+      <div class="product-img-wrap">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <span class="product-badge ${badgeCls}">${badgeText}</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-size">${p.size}</div>
+        <div class="product-price">₹${p.price}</div>
+        <div class="product-qty-row">
+          <button class="qty-btn" onclick="changeInlineQty(${p.id},-1)">−</button>
+          <span class="qty-display" id="iqty-${p.id}">1</span>
+          <button class="qty-btn" onclick="changeInlineQty(${p.id},1)">+</button>
+        </div>
+        <div class="product-actions">
+          <button class="btn-view" onclick="openQV(${p.id})">Details</button>
+          <button class="btn-cart" onclick="addToCartInline(${p.id})"><i class="fa-solid fa-cart-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function changeInlineQty(id, delta) {
+  const el = document.getElementById(`iqty-${id}`);
+  if (!el) return;
+  const cur = parseInt(el.textContent) || 1;
+  el.textContent = Math.max(1, cur + delta);
+}
+function addToCartInline(id) {
+  const el = document.getElementById(`iqty-${id}`);
+  const qty = el ? (parseInt(el.textContent) || 1) : 1;
+  addToCart(id, qty);
+  if (el) el.textContent = '1';
+}
 
-        function renderProducts() {
-            const grid = document.getElementById('products-grid');
-            const list = getFilteredProducts();
+/* =========================================================
+   CART
+========================================================= */
+function addToCart(id, qty = 1) {
+  const prod = products.find(p => p.id === id);
+  if (!prod) return;
+  const existing = cart.find(i => i.id === id);
+  if (existing) existing.qty += qty;
+  else cart.push({ ...prod, qty });
+  save();
+  updateCartBadge();
+  showToast(`${prod.name} added to cart ✓`, 'success');
+}
+function updateCartBadge() {
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cart-count').textContent = total;
+  document.getElementById('cart-drawer-count').textContent = `${total} item${total !== 1 ? 's' : ''}`;
+}
+function toggleCart() {
+  document.getElementById('cart-drawer').classList.toggle('open');
+  renderCartDrawer();
+}
+function renderCartDrawer() {
+  const body = document.getElementById('cart-items');
+  const footer = document.getElementById('cart-footer');
+  if (!cart.length) {
+    body.innerHTML = `<div class="cart-empty"><i class="fa-solid fa-basket-shopping"></i><p>Your cart is empty.<br>Add some products!</p></div>`;
+    footer.style.display = 'none';
+    return;
+  }
+  body.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img class="cart-item-img" src="${item.img}" alt="${item.name}" loading="lazy">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-size">${item.size}</div>
+        <div class="cart-item-price">₹${item.price * item.qty}</div>
+        <div class="cart-qty-row">
+          <button class="cqty-btn" onclick="changeCartQty(${item.id},-1)">−</button>
+          <span class="cqty-val">${item.qty}</span>
+          <button class="cqty-btn" onclick="changeCartQty(${item.id},1)">+</button>
+        </div>
+      </div>
+      <button class="cart-item-remove" onclick="removeCartItem(${item.id})" aria-label="Remove">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  `).join('');
+  const sub = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  document.getElementById('cart-subtotal').textContent = `₹${sub}`;
+  document.getElementById('cart-total').textContent = `₹${sub}`;
+  footer.style.display = 'block';
+}
+function changeCartQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty = Math.max(1, item.qty + delta);
+  save();
+  updateCartBadge();
+  renderCartDrawer();
+}
+function removeCartItem(id) {
+  cart = cart.filter(i => i.id !== id);
+  save();
+  updateCartBadge();
+  renderCartDrawer();
+}
 
-            if (!list.length) {
-                grid.innerHTML = `<div class="col-span-full text-center text-gray-500 py-16">
-                    No products found. Try a different search or clear filters.
-                </div>`;
-                return;
-            }
+/* =========================================================
+   QUICK VIEW
+========================================================= */
+function openQV(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  qvProductId = id;
+  qvQty = 1;
+  document.getElementById('qv-img').src = p.img;
+  document.getElementById('qv-cat').textContent = p.category === 'oils' ? '🫙 Cooking Oil' : '📦 Essential';
+  document.getElementById('qv-name').textContent = p.name;
+  document.getElementById('qv-size').textContent = `Size: ${p.size}`;
+  document.getElementById('qv-desc').textContent = p.description;
+  document.getElementById('qv-price').textContent = `₹${p.price}`;
+  document.getElementById('qv-qty').textContent = qvQty;
+  document.getElementById('qv-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeQV() {
+  document.getElementById('qv-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function updateQVQty(d) {
+  qvQty = Math.max(1, qvQty + d);
+  document.getElementById('qv-qty').textContent = qvQty;
+}
+function addFromQV() {
+  if (!qvProductId) return;
+  addToCart(qvProductId, qvQty);
+  closeQV();
+}
 
-            grid.innerHTML = list.map(p => `
-                <div class="product-card bg-white rounded-3xl overflow-hidden shadow">
-                    <div class="relative">
-                        <img src="${p.img}" alt="${p.name}" class="w-full h-56 object-cover">
-                        <span class="absolute bottom-3 left-3 bg-black/60 text-white text-xs px-3 py-1 rounded-full">${p.category.toUpperCase()}</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-semibold text-lg">${p.name}</h3>
-                        <p class="text-gray-500">${p.size}</p>
-                        <p class="text-2xl font-bold text-orange-600 mt-2">₹${p.price}</p>
-                        <div class="mt-4 flex gap-2">
-                            <button onclick="openProductModal(${p.id})" class="flex-1 bg-white border border-gray-200 hover:border-orange-300 text-gray-700 py-3 rounded-2xl font-semibold">
-                                View
-                            </button>
-                            <button onclick="addToCart(${p.id}, 1)" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-2xl font-semibold">
-                                <i class="fa-solid fa-cart-plus"></i> Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
+/* =========================================================
+   CHECKOUT
+========================================================= */
+function genOrderId() {
+  const n = (orders.length + 1).toString().padStart(4,'0');
+  return `SCU-${new Date().getFullYear()}${n}`;
+}
+function openCheckout() {
+  if (!cart.length) { showToast('Your cart is empty!', 'error'); return; }
+  toggleCart();
+  renderCheckoutForm();
+  document.getElementById('checkout-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCheckout() {
+  document.getElementById('checkout-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function renderCheckoutForm() {
+  const sub = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  const lines = cart.map(i => `<div class="summary-line"><span>${i.name} × ${i.qty}</span><span>₹${i.price * i.qty}</span></div>`).join('');
+  document.getElementById('checkout-modal').innerHTML = `
+    <div class="modal-header">
+      <span class="modal-title">Checkout</span>
+      <button class="modal-close" onclick="closeCheckout()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="checkout-order-summary">
+        <h4>Order Summary</h4>
+        ${lines}
+        <div class="summary-line total"><span>Total</span><span>₹${sub}</span></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input class="form-input" id="co-name" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mobile *</label>
+          <input class="form-input" id="co-phone" placeholder="+91 XXXXXX XXXX" type="tel">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Delivery Address *</label>
+        <input class="form-input" id="co-address" placeholder="House / Flat, Street, Area">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <input class="form-input" id="co-city" value="Hubballi" placeholder="City">
+        </div>
+        <div class="form-group">
+          <label class="form-label">PIN Code</label>
+          <input class="form-input" id="co-pin" placeholder="580028" type="number">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes (optional)</label>
+        <input class="form-input" id="co-notes" placeholder="Preferred delivery time, instructions, etc.">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Payment Method</label>
+        <div class="payment-opts">
+          <div class="payment-opt selected" id="pay-cod" onclick="selectPayment('cod')">
+            <i class="fa-solid fa-money-bill-wave"></i>Cash on Delivery
+          </div>
+          <div class="payment-opt" id="pay-upi" onclick="selectPayment('upi')">
+            <i class="fa-solid fa-mobile-screen-button"></i>UPI / GPay
+          </div>
+          <div class="payment-opt" id="pay-wa" onclick="selectPayment('wa')">
+            <i class="fa-brands fa-whatsapp"></i>WhatsApp Order
+          </div>
+        </div>
+      </div>
+      <button class="btn-place-order" onclick="placeOrder()">
+        <i class="fa-solid fa-check-circle"></i> Place Order – ₹${sub}
+      </button>
+    </div>`;
+}
+function selectPayment(method) {
+  selectedPayment = method;
+  ['cod','upi','wa'].forEach(m => {
+    document.getElementById(`pay-${m}`)?.classList.toggle('selected', m === method);
+  });
+}
+function placeOrder() {
+  const name    = document.getElementById('co-name')?.value.trim();
+  const phone   = document.getElementById('co-phone')?.value.trim();
+  const address = document.getElementById('co-address')?.value.trim();
+  if (!name || !phone || !address) { showToast('Please fill all required fields', 'error'); return; }
+  const orderId = genOrderId();
+  const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  const order = {
+    id: orderId,
+    createdAt: Date.now(),
+    customer: { name, phone, address, city: document.getElementById('co-city')?.value || 'Hubballi', notes: document.getElementById('co-notes')?.value || '' },
+    items: cart.map(i => ({ id:i.id, name:i.name, size:i.size, price:i.price, qty:i.qty })),
+    total,
+    payment: selectedPayment,
+    status: 'Received'
+  };
+  orders.push(order);
+  if (selectedPayment === 'wa') {
+    const lines = order.items.map(i => `• ${i.name} (${i.qty}) – ₹${i.price * i.qty}`).join('\n');
+    const msg = encodeURIComponent(`*New Order – ${orderId}*\n\nCustomer: ${name}\nPhone: ${phone}\nAddress: ${address}\n\n*Items:*\n${lines}\n\n*Total: ₹${total}*\nPayment: ${selectedPayment.toUpperCase()}`);
+    window.open(`https://wa.me/919019870656?text=${msg}`, '_blank');
+  }
+  cart = [];
+  save();
+  updateCartBadge();
+  renderOrderConfirm(order);
+  if (isAdmin) renderAdminOrders();
+}
+function renderOrderConfirm(order) {
+  const dateStr = new Date(order.createdAt).toLocaleString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  document.getElementById('checkout-modal').innerHTML = `
+    <div class="modal-body">
+      <div class="order-confirm">
+        <div class="confirm-icon"><i class="fa-solid fa-check"></i></div>
+        <div class="confirm-title">Order Placed!</div>
+        <div class="confirm-subtitle">Thank you, <strong>${order.customer.name}</strong>! Your order has been received. We'll contact you on <strong>${order.customer.phone}</strong> to confirm delivery.</div>
+        <div class="order-id-box">
+          <label>Your Order ID</label>
+          <span>${order.id}</span>
+        </div>
+        <p style="font-size:0.8rem;color:var(--warm-gray);margin-bottom:24px">📍 Save this ID to track your order status</p>
+        <div class="confirm-actions">
+          <button class="btn-primary" onclick="closeCheckout()">
+            <i class="fa-solid fa-house"></i> Back to Shop
+          </button>
+          <a href="https://wa.me/919019870656" target="_blank" rel="noopener" class="btn-outline" style="color:var(--ink);border-color:rgba(42,31,14,0.2)">
+            <i class="fa-brands fa-whatsapp" style="color:var(--green-lt)"></i> Contact Us
+          </a>
+        </div>
+      </div>
+    </div>`;
+}
 
-        function updateCartCount() {
-            const count = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
-            document.getElementById('cart-count').textContent = count;
-        }
+/* =========================================================
+   ORDER TRACKING
+========================================================= */
+function trackOrder() {
+  const input = document.getElementById('track-input').value.trim().toUpperCase();
+  const result = document.getElementById('tracking-result');
+  if (!input) { result.innerHTML = `<p class="track-error">Please enter an Order ID.</p>`; return; }
+  const order = orders.find(o => o.id.toUpperCase() === input);
+  if (!order) { result.innerHTML = `<p class="track-error">No order found with ID <strong style="color:var(--gold-light)">${input}</strong>.<br>Please check and try again.</p>`; return; }
+  const currentStep = STATUS_STEPS.indexOf(order.status);
+  const stepsHtml = STATUS_STEPS.map((step, i) => {
+    const done = i < currentStep;
+    const active = i === currentStep;
+    const isLast = i === STATUS_STEPS.length - 1;
+    return `
+      <div class="progress-step">
+        <div class="step-line-wrap">
+          <div class="step-dot ${done ? 'done' : active ? 'active' : ''}">
+            ${done ? '<i class="fa-solid fa-check" style="font-size:0.7rem"></i>' : i + 1}
+          </div>
+          ${!isLast ? `<div class="step-connector ${done ? 'done' : ''}"></div>` : ''}
+        </div>
+        <div class="step-body">
+          <div class="step-label ${active ? 'active-label' : ''}">${step}</div>
+          <div class="step-sublabel">${active ? '← Current status' : done ? 'Completed' : 'Pending'}</div>
+        </div>
+      </div>`;
+  }).join('');
+  const dateStr = new Date(order.createdAt).toLocaleString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  result.innerHTML = `
+    <div class="order-info-card">
+      <div class="order-info-header">
+        <div>
+          <div class="order-id-label">Order ID</div>
+          <div class="order-id-val">${order.id}</div>
+        </div>
+        <div class="order-status-badge status-${order.status.replace(/\s+/g,'').toLowerCase()}">${order.status}</div>
+      </div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-bottom:16px">Placed: ${dateStr} &nbsp;•&nbsp; Total: ₹${order.total}</div>
+      <div class="progress-track">${stepsHtml}</div>
+    </div>`;
+}
 
-        function addToCart(id, qty = 1) {
-            if (!requireLogin()) return;
-            const prod = products.find(p => p.id === id);
-            if (!prod) return;
-            const existing = cart.find(item => item.id === id);
-            if (existing) {
-                existing.qty = (existing.qty || 1) + qty;
-            } else {
-                cart.push({ ...prod, qty });
-            }
+/* =========================================================
+   ADMIN
+========================================================= */
+function openAdminLogin() {
+  document.getElementById('login-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('admin-user').focus(), 100);
+}
+function closeLoginModal() {
+  document.getElementById('login-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function adminLogin() {
+  const u = document.getElementById('admin-user').value.trim();
+  const p = document.getElementById('admin-pass').value.trim();
+  if (u === 'admin' && p === '1234') {
+    isAdmin = true;
+    closeLoginModal();
+    document.getElementById('admin').classList.add('visible');
+    renderAdminStats();
+    renderAdminProducts();
+    renderAdminOrders();
+    smoothNav(null,'admin');
+    showToast('Welcome back, Admin! 👋', 'success');
+  } else {
+    showToast('Invalid credentials', 'error');
+    document.getElementById('admin-pass').value = '';
+    document.getElementById('admin-pass').focus();
+  }
+}
+function switchAdminTab(id, btn) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(`tab-${id}`).classList.add('active');
+}
+function renderAdminStats() {
+  const revenue = orders.reduce((s,o) => s + o.total, 0);
+  document.getElementById('stats-row').innerHTML = `
+    <div class="stat-card"><div class="stat-val">${products.length}</div><div class="stat-label">Products</div></div>
+    <div class="stat-card"><div class="stat-val">${orders.length}</div><div class="stat-label">Total Orders</div></div>
+    <div class="stat-card"><div class="stat-val">₹${revenue}</div><div class="stat-label">Revenue</div></div>
+    <div class="stat-card"><div class="stat-val">${cart.length}</div><div class="stat-label">Cart Items</div></div>`;
+}
+function renderAdminProducts() {
+  document.getElementById('admin-products-list').innerHTML = products.map((p,i) => `
+    <div class="admin-product-row">
+      <div class="apt-info">
+        <div class="apt-name">${p.name}</div>
+        <div class="apt-meta">${p.category} · ${p.size} · ₹${p.price}</div>
+      </div>
+      <div class="apt-btns">
+        <button class="btn-xs btn-edit" onclick="editProduct(${i})"><i class="fa-solid fa-pen"></i> Edit</button>
+        <button class="btn-xs btn-del" onclick="deleteProduct(${i})"><i class="fa-solid fa-trash"></i> Remove</button>
+      </div>
+    </div>`).join('');
+}
+function renderAdminOrders() {
+  const el = document.getElementById('admin-orders-list');
+  if (!orders.length) { el.innerHTML = `<p style="color:var(--warm-gray);font-size:0.9rem">No orders yet.</p>`; return; }
+  el.innerHTML = [...orders].reverse().map(order => {
+    const dateStr = new Date(order.createdAt).toLocaleString('en-IN', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
+    const opts = STATUS_STEPS.map(s => `<option value="${s}" ${order.status===s?'selected':''}>${s}</option>`).join('');
+    return `<div class="order-row">
+      <div class="order-row-header">
+        <div>
+          <div class="order-row-id">${order.id}</div>
+          <div class="order-row-date">${dateStr} · ${order.customer?.name || 'Customer'}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="order-row-total">₹${order.total}</div>
+          <select class="order-status-select" onchange="updateOrderStatus('${order.id}',this.value)">${opts}</select>
+        </div>
+      </div>
+      <div class="order-items-list">${order.items.map(i=>`${i.name} ×${i.qty}`).join('  ·  ')}</div>
+    </div>`;
+  }).join('');
+}
+function updateOrderStatus(id, status) {
+  const o = orders.find(x => x.id === id);
+  if (o) { o.status = status; save(); showToast(`Order ${id} → ${status}`, 'success'); renderAdminStats(); }
+}
+function addProductAdmin() {
+  const name  = document.getElementById('p-name').value.trim();
+  const size  = document.getElementById('p-size').value.trim();
+  const price = parseFloat(document.getElementById('p-price').value);
+  const img   = document.getElementById('p-img').value.trim();
+  const cat   = document.getElementById('p-category').value;
+  const desc  = document.getElementById('p-desc').value.trim();
+  if (!name || !size || !price || !img) { showToast('Please fill all fields', 'error'); return; }
+  const id = products.length ? Math.max(...products.map(p=>p.id)) + 1 : 1;
+  products.push({ id, name, category:cat, size, price, img, description: desc || 'Fresh product added via admin.' });
+  save();
+  renderProducts();
+  renderAdminProducts();
+  renderAdminStats();
+  ['p-name','p-size','p-price','p-img','p-desc'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+  showToast(`${name} added ✓`, 'success');
+}
+function editProduct(index) {
+  const p = products[index];
+  const name  = prompt('Product name:', p.name);
+  if (!name) return;
+  const price = parseFloat(prompt('Price (₹):', p.price));
+  const size  = prompt('Size:', p.size);
+  const img   = prompt('Image URL:', p.img);
+  const cat   = prompt('Category (oils/essentials):', p.category);
+  const desc  = prompt('Description:', p.description);
+  if (!name || isNaN(price) || !size) { showToast('Invalid input', 'error'); return; }
+  products[index] = { ...p, name, price, size, img: img||p.img, category: cat||p.category, description: desc||p.description };
+  save();
+  renderProducts();
+  renderAdminProducts();
+  showToast(`${name} updated ✓`, 'success');
+}
+function deleteProduct(index) {
+  const name = products[index].name;
+  if (!confirm(`Remove "${name}" from catalog?`)) return;
+  products.splice(index, 1);
+  save();
+  renderProducts();
+  renderAdminProducts();
+  renderAdminStats();
+  showToast(`${name} removed`, 'error');
+}
+function resetProducts() {
+  if (!confirm('Reset to default products? Custom products will be lost.')) return;
+  products = deepClone(DEFAULT_PRODUCTS);
+  save();
+  renderProducts();
+  renderAdminProducts();
+  renderAdminStats();
+  showToast('Products reset to defaults', 'success');
+}
+function exportProducts() {
+  const blob = new Blob([JSON.stringify(products, null, 2)], { type:'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'scunkal-products.json'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Products exported as JSON', 'success');
+}
 
-            saveState();
-            updateCartCount();
-            showToast(`${prod.name} added to cart`);
-        }
+/* =========================================================
+   TOAST
+========================================================= */
+function showToast(msg, type = 'default') {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icons = { success:'<i class="fa-solid fa-circle-check"></i>', error:'<i class="fa-solid fa-circle-xmark"></i>', default:'<i class="fa-solid fa-info-circle"></i>' };
+  toast.innerHTML = `${icons[type] || icons.default} ${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.animation = 'toastOut 0.3s ease forwards';
+    setTimeout(() => toast.remove(), 300);
+  }, 2800);
+}
 
-        function renderCartModal() {
-            const itemsEl = document.getElementById('cart-items');
-            if (!cart.length) {
-                itemsEl.innerHTML = '<p class="text-center py-10 text-gray-500">Cart empty</p>';
-            } else {
-                itemsEl.innerHTML = cart.map(item => `
-                    <div class="flex items-start gap-4 mb-4">
-                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-xl">
-                        <div class="flex-1">
-                            <p class="font-semibold">${item.name}</p>
-                            <p class="text-sm text-gray-500">${item.size}</p>
-                            <div class="flex items-center gap-2 mt-2">
-                                <button onclick="changeCartQty(${item.id}, -1)" class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200">-</button>
-                                <span class="font-semibold">${item.qty}</span>
-                                <button onclick="changeCartQty(${item.id}, 1)" class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200">+</button>
-                                <span class="ml-auto font-semibold text-orange-600">₹${item.price * item.qty}</span>
-                            </div>
-                        </div>
-                        <button onclick="removeCartItem(${item.id})" class="text-red-500 hover:text-red-700" aria-label="Remove item">×</button>
-                    </div>
-                `).join('');
-            }
+/* =========================================================
+   KEYBOARD EVENTS
+========================================================= */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeQV();
+    closeCheckout();
+    closeLoginModal();
+    document.getElementById('cart-drawer').classList.remove('open');
+    document.getElementById('mobile-drawer').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
 
-            const total = cart.reduce((sum, item) => sum + item.price * (item.qty || 1), 0);
-            document.getElementById('cart-total').textContent = `₹${total}`;
-        }
-
-        function toggleCart() {
-            if (!requireLogin()) return;
-            const modal = document.getElementById('cart-modal');
-            if (modal.classList.contains('hidden')) {
-                renderCartModal();
-                modal.classList.remove('hidden');
-            } else {
-                modal.classList.add('hidden');
-            }
-        }
-
-        function changeCartQty(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if (!item) return;
-            item.qty = Math.max(1, (item.qty || 1) + delta);
-            if (item.qty === 0) {
-                cart = cart.filter(i => i.id !== id);
-            }
-            saveState();
-            updateCartCount();
-            renderCartModal();
-        }
-
-        function removeCartItem(id) {
-            cart = cart.filter(i => i.id !== id);
-            saveState();
-            updateCartCount();
-            renderCartModal();
-        }
-
-        function checkout() {
-            if (!requireLogin()) return;
-            if (!cart.length) return;
-            const total = cart.reduce((sum, item) => sum + item.price * (item.qty || 1), 0);
-            const orderLines = cart.map(item => `- ${item.name} (${item.qty}) ₹${item.price * item.qty}`);
-            const msg = encodeURIComponent(`New order from website:\n${orderLines.join('\n')}\n\nTotal: ₹${total}`);
-            window.open(`https://wa.me/919019870656?text=${msg}`, '_blank');
-            const order = {
-                createdAt: Date.now(),
-                items: cart.map(i => ({ id: i.id, name: i.name, price: i.price, qty: i.qty })),
-                total
-            };
-            orders.push(order);
-            cart = [];
-            saveState();
-            renderAdminOrders();
-            updateCartCount();
-            toggleCart();
-            showToast('Order sent via WhatsApp!');
-        }
-
-        function openProductModal(id) {
-            if (!requireLogin()) return;
-            const product = products.find(p => p.id === id);
-            if (!product) return;
-            activeModalProductId = id;
-            modalQty = 1;
-            document.getElementById('modal-title').textContent = product.name;
-            document.getElementById('modal-category').textContent = product.category;
-            document.getElementById('modal-img').src = product.img;
-            document.getElementById('modal-desc').textContent = product.description;
-            document.getElementById('modal-price').textContent = `₹${product.price}`;
-            document.getElementById('modal-qty').textContent = modalQty;
-            document.getElementById('product-modal').classList.remove('hidden');
-        }
-
-        function closeProductModal() {
-            document.getElementById('product-modal').classList.add('hidden');
-        }
-
-        function updateModalQty(delta) {
-            modalQty = Math.max(1, modalQty + delta);
-            document.getElementById('modal-qty').textContent = modalQty;
-        }
-
-        function addFromModal() {
-            if (!activeModalProductId) return;
-            addToCart(activeModalProductId, modalQty);
-            closeProductModal();
-        }
-
-        function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
-
-        function navigateMobile(sectionId) {
-            toggleMobileMenu();
-            document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                document.getElementById('cart-modal')?.classList.add('hidden');
-                document.getElementById('product-modal')?.classList.add('hidden');
-                document.getElementById('mobile-menu')?.classList.add('hidden');
-            }
-        });
-
-        function openLogin() {
-            showLoginPrompt();
-            document.getElementById('admin-user').focus();
-        }
-
-        function adminLogin() {
-            const user = document.getElementById('admin-user').value.trim();
-            const pass = document.getElementById('admin-pass').value.trim();
-            if (user === 'admin' && pass === '1234') {
-                isAuthenticated = true;
-                hideLoginPrompt();
-                showToast('Login successful');
-                document.getElementById('product-admin').classList.remove('hidden');
-                renderAdminProducts();
-                renderAdminOrders();
-            } else {
-                showToast('Wrong credentials');
-            }
-        }
-
-        function addProductAdmin() {
-            const name = document.getElementById('p-name').value.trim();
-            const size = document.getElementById('p-size').value.trim();
-            const price = parseFloat(document.getElementById('p-price').value);
-            const img = document.getElementById('p-img').value.trim();
-
-            if (!name || !size || !price || !img) {
-                showToast('Please fill out all fields');
-                return;
-            }
-
-            const id = products.length ? Math.max(...products.map(p => p.id)) + 1 : 1;
-            products.push({ id, name, category: 'oils', size, price, img, description: 'New product added via admin panel.' });
-            saveState();
-            renderProducts();
-            renderAdminProducts();
-            showToast('Product added');
-        }
-
-        function renderAdminProducts() {
-            const el = document.getElementById('admin-products');
-            el.innerHTML = products.map((p, i) => `
-                <div class="flex flex-col md:flex-row md:items-center justify-between border p-3 mb-2 rounded-xl gap-3">
-                    <div>
-                        <b>${p.name}</b> ${p.size}
-                        <p class="text-sm text-gray-500">${p.category} • ₹${p.price}</p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="editProduct(${i})" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-xl">Edit</button>
-                        <button onclick="deleteProduct(${i})" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl">Delete</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function editProduct(index) {
-            const product = products[index];
-            const name = prompt('Product name', product.name);
-            const price = prompt('Price', product.price);
-            const size = prompt('Size', product.size);
-            const img = prompt('Image URL', product.img);
-            const category = prompt('Category (oils/essentials)', product.category);
-            const description = prompt('Description', product.description);
-            if (!name || !price || !size || !img) return;
-            products[index] = { ...product, name, price: parseFloat(price), size, img, category, description };
-            saveState();
-            renderProducts();
-            renderAdminProducts();
-            showToast('Product updated');
-        }
-
-        function deleteProduct(index) {
-            products.splice(index, 1);
-            saveState();
-            renderProducts();
-            renderAdminProducts();
-            showToast('Product removed');
-        }
-
-        function renderAdminOrders() {
-            const el = document.getElementById('admin-orders');
-            if (!el) return;
-
-            if (!orders.length) {
-                el.innerHTML = `
-                    <div class="bg-white p-6 rounded-3xl shadow">
-                        <h3 class="text-2xl font-bold mb-4">Recent Orders</h3>
-                        <p class="text-gray-500">No orders yet. Orders will appear after checkout.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            el.innerHTML = `
-                <div class="bg-white p-6 rounded-3xl shadow">
-                    <h3 class="text-2xl font-bold mb-4">Recent Orders</h3>
-                    <div class="space-y-4">
-                        ${orders.slice(-5).reverse().map(order => `
-                            <div class="p-4 border rounded-2xl">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <div class="text-sm text-gray-500">${new Date(order.createdAt).toLocaleString()}</div>
-                                        <div class="text-lg font-semibold">₹${order.total.toFixed(2)}</div>
-                                    </div>
-                                    <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">${order.items.length} items</span>
-                                </div>
-                                <ul class="mt-3 text-sm text-gray-700 space-y-1">
-                                    ${order.items.map(i => `<li>${i.name} x ${i.qty} &middot; ₹${i.price * i.qty}</li>`).join('')}
-                                </ul>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        }
-
-        window.addEventListener('load', () => {
-            loadState();
-            renderProducts();
-            renderAdminOrders();
-            showLoginPrompt();
-        });
-    </script>
+/* =========================================================
+   INIT
+========================================================= */
+window.addEventListener('DOMContentLoaded', () => {
+  load();
+  buildMarquee();
+  renderProducts();
+  updateCartBadge();
+});
+</script>
 </body>
 </html>
